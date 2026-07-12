@@ -9,8 +9,8 @@ type RevealProps = {
 }
 
 /**
- * Fades + lifts its children into place the first time they enter the
- * viewport. Unobserves after firing so scrolling back up stays settled.
+ * Fades + lifts its children into place whenever they enter the viewport,
+ * triggering the animation every scroll cycle.
  */
 function Reveal({ children, delay = 0, className = '', as: Tag = 'div' }: RevealProps) {
   const ref = useRef<HTMLElement>(null)
@@ -23,7 +23,8 @@ function Reveal({ children, delay = 0, className = '', as: Tag = 'div' }: Reveal
       ([entry]) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible')
-          observer.unobserve(entry.target)
+        } else {
+          entry.target.classList.remove('is-visible')
         }
       },
       { threshold: 0.15, rootMargin: '0px 0px -60px 0px' },
