@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Dynamic Delta Group — design tokens
+   Palette: graphite/ink base, warm bronze accent, deep navy surfaces
+   Type:    Bodoni Moda (display) · Inter (UI) · JetBrains Mono (labels)
+------------------------------------------------------------------- */
+@theme {
+  --color-ink: #08090b;
+  --color-ink-soft: #0f1115;
+  --color-navy: #0d1826;
+  --color-navy-soft: #142438;
+  --color-bone: #f2efe9;
+  --color-bone-dim: #a7a49e;
+  --color-bronze: #c0954e;
+  --color-bronze-lit: #e0bd7d;
+  --color-line: rgba(242, 239, 233, 0.12);
+
+  --font-display: "Bodoni Moda", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-bronze);
+    color: var(--color-ink);
+  }
+
+  /* Slim bronze scrollbar to match the chrome */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-navy-soft);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-bronze);
+  }
+}
+
+@layer components {
+  /* Small uppercase technical label used above every section title */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-bronze);
+  }
+
+  /* Editorial display heading — light weight, tight leading, large */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+  }
+
+  /* Thin hairline divider matching the grid system */
+  .hairline {
+    height: 1px;
+    background: var(--color-line);
+  }
+}
+
+/* ---------------------------- motion ---------------------------- */
+
+/* Scroll reveal: elements start shifted + transparent, .is-visible settles them */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 1s var(--ease-out-expo),
+    transform 1s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Masked line-by-line rise, used for hero headlines */
+.rise {
+  display: block;
+  overflow: hidden;
+}
+.rise > span {
+  display: block;
+  transform: translateY(105%);
+  animation: rise-in 1.15s var(--ease-out-expo) forwards;
+  animation-delay: var(--rise-delay, 0ms);
+}
+@keyframes rise-in {
+  to {
+    transform: none;
+  }
+}
+
+/* Slow drift on hero imagery so the frame never feels static */
+@keyframes ken-burns {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1.18);
+  }
+}
+.ken-burns {
+  animation: ken-burns 20s ease-out forwards;
+}
+
+/* Infinite capability ticker */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .rise > span,
+  .ken-burns,
+  .marquee-track {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
