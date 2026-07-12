@@ -129,12 +129,12 @@ function Navbar() {
                   {/* Border lives on the animated element, so it hides with the link */}
                   <Link
                     to={link.to}
-                    className="group flex items-baseline gap-6 border-b border-line py-4 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    className="group flex items-baseline gap-6 border-b border-line py-4 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
                     style={{
                       opacity: menuOpen ? 1 : 0,
                       transform: menuOpen ? 'none' : 'translateX(-100%)',
                       // Wait for the doors to shut, then cascade down the list
-                      transitionDelay: `${menuOpen ? DOORS_CLOSED + i * 90 : 0}ms`,
+                      transitionDelay: `${menuOpen ? DOORS_CLOSED + i * 130 : 0}ms`,
                     }}
                   >
                     <span className="font-mono text-[11px] text-bronze">{pad(i + 1)}</span>
@@ -175,11 +175,11 @@ function Navbar() {
             ].map((block, i) => (
               <div
                 key={i}
-                className="overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                className="overflow-hidden transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
                 style={{
                   opacity: menuOpen ? 1 : 0,
                   transform: menuOpen ? 'none' : 'translateX(100%)',
-                  transitionDelay: `${menuOpen ? DOORS_CLOSED + i * 140 : 0}ms`,
+                  transitionDelay: `${menuOpen ? DOORS_CLOSED + i * 200 : 0}ms`,
                 }}
               >
                 {block}
