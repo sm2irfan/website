@@ -75,7 +75,7 @@ function Services() {
       <Section className="border-t border-line bg-ink-soft">
         <Reveal>
           <SectionHeading eyebrow="How We Deliver">
-            From survey <span className="text-bronze italic">to</span> handover
+            From survey <span className="text-brand italic">to</span> handover
           </SectionHeading>
         </Reveal>
 
@@ -84,9 +84,9 @@ function Services() {
             <Reveal
               key={phase.title}
               delay={i * 100}
-              className="group bg-ink-soft p-8 transition-colors duration-500 hover:bg-navy md:p-10"
+              className="group bg-ink-soft p-8 transition-colors duration-500 hover:bg-surface md:p-10"
             >
-              <span className="display text-5xl text-bone/15 transition-colors duration-500 group-hover:text-bronze/40">
+              <span className="display text-5xl text-bone/15 transition-colors duration-500 group-hover:text-brand/40">
                 {pad(i + 1)}
               </span>
               <h3 className="display mt-8 text-2xl">{phase.title}</h3>

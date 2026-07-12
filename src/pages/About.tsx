@@ -54,7 +54,7 @@ function About() {
               <div className="absolute inset-0 bg-gradient-to-t from-ink/80 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-8">
                 <p className="display text-xl">{company.chairman}</p>
-                <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-bronze">
+                <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-brand">
                   Chairman
                 </p>
               </div>
@@ -64,7 +64,7 @@ function About() {
           <Reveal delay={120} className="flex flex-col justify-center">
             <Eyebrow>The Promise</Eyebrow>
             <blockquote className="display mt-8 text-3xl leading-tight md:text-5xl">
-              &ldquo;Quality you deserve, <span className="text-bronze italic">and</span>{' '}
+              &ldquo;Quality you deserve, <span className="text-brand italic">and</span>{' '}
               dependability you can count on.&rdquo;
             </blockquote>
             <p className="mt-8 leading-relaxed text-bone-dim">
@@ -95,7 +95,7 @@ function About() {
       <Section className="border-t border-line">
         <Reveal>
           <SectionHeading eyebrow="Our Trajectory">
-            How the group <span className="text-bronze italic">grew</span>
+            How the group <span className="text-brand italic">grew</span>
           </SectionHeading>
         </Reveal>
 
@@ -103,7 +103,7 @@ function About() {
           {timeline.map((entry, i) => (
             <Reveal key={entry.year} delay={i * 80}>
               <Row className="py-10 md:grid-cols-[160px_1fr_2fr] md:gap-10">
-                <span className="display text-3xl text-bronze md:text-4xl">{entry.year}</span>
+                <span className="display text-3xl text-brand md:text-4xl">{entry.year}</span>
                 <h3 className="display text-2xl">{entry.title}</h3>
                 <p className="leading-relaxed text-bone-dim">{entry.body}</p>
               </Row>
@@ -117,7 +117,7 @@ function About() {
       <Section className="border-t border-line bg-ink-soft">
         <Reveal>
           <SectionHeading eyebrow="Our Values">
-            What we will <span className="text-bronze italic">not</span> compromise
+            What we will <span className="text-brand italic">not</span> compromise
           </SectionHeading>
         </Reveal>
 
@@ -126,7 +126,7 @@ function About() {
             <Reveal
               key={value.title}
               delay={i * 90}
-              className="bg-ink-soft p-8 transition-colors duration-500 hover:bg-navy md:p-10"
+              className="bg-ink-soft p-8 transition-colors duration-500 hover:bg-surface md:p-10"
             >
               <NumberedCard index={i + 1} {...value} />
             </Reveal>

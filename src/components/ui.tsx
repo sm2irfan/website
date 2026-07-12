@@ -24,7 +24,7 @@ export function Section({
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
     <p className="eyebrow flex items-center gap-3">
-      <span className="inline-block h-px w-8 bg-bronze" />
+      <span className="inline-block h-px w-8 bg-brand" />
       {children}
     </p>
   )
@@ -56,16 +56,16 @@ const SWEEP_BASE =
   'group relative inline-flex items-center gap-3 overflow-hidden border font-mono text-[11px] uppercase tracking-[0.22em] transition-colors duration-500'
 
 const VARIANTS: Record<Variant, string> = {
-  solid: 'border-bronze text-bronze hover:text-ink',
+  solid: 'border-brand text-brand hover:text-ink',
   ghost: 'border-line text-bone hover:border-bone hover:text-ink',
 }
 
 const FILLS: Record<Variant, string> = {
-  solid: 'bg-bronze',
+  solid: 'bg-brand',
   ghost: 'bg-bone',
 }
 
-/** Bronze fill sweeping up from the bottom edge — the site's one CTA motif. */
+/** Brand fill sweeping up from the bottom edge — the site's one CTA motif. */
 function SweepBody({ variant, children }: { variant: Variant; children: ReactNode }) {
   return (
     <>
@@ -151,7 +151,7 @@ export function Counter({ value, suffix = '' }: { value: number; suffix?: string
   return (
     <span ref={ref} className="display text-5xl text-bone md:text-6xl">
       {display}
-      <span className="text-bronze">{suffix}</span>
+      <span className="text-brand">{suffix}</span>
     </span>
   )
 }
@@ -180,7 +180,7 @@ export function Marquee({ items }: { items: string[] }) {
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-bone-dim">
               {item}
             </span>
-            <span className="text-bronze">&#9670;</span>
+            <span className="text-brand">&#9670;</span>
           </div>
         ))}
       </div>

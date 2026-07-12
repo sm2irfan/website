@@ -14,7 +14,7 @@ const HERO_LINES = [
     delay: 470,
     content: (
       <>
-        <span className="text-bronze italic">the</span> standard
+        <span className="text-brand italic">the</span> standard
       </>
     ),
   },
@@ -37,7 +37,7 @@ function Hero() {
       <div className="relative mx-auto w-full max-w-7xl px-6 pt-32 pb-24 md:px-10">
         <div className="rise" style={cssVars({ '--rise-delay': '200ms' })}>
           <span className="eyebrow flex items-center gap-3">
-            <span className="inline-block h-px w-8 bg-bronze" />
+            <span className="inline-block h-px w-8 bg-brand" />
             Established {company.founded} · Dubai, UAE
           </span>
         </div>
@@ -73,7 +73,7 @@ function Hero() {
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-bone-dim [writing-mode:vertical-rl]">
           Scroll
         </span>
-        <span className="block h-16 w-px bg-gradient-to-b from-bronze to-transparent" />
+        <span className="block h-16 w-px bg-gradient-to-b from-brand to-transparent" />
       </div>
     </section>
   )
@@ -89,7 +89,7 @@ function Intro() {
           <SectionHeading eyebrow="Who We Are">
             A single group,
             <br />
-            <span className="text-bronze italic">seven</span> disciplines.
+            <span className="text-brand italic">seven</span> disciplines.
           </SectionHeading>
         </Reveal>
 
@@ -105,10 +105,10 @@ function Intro() {
           </p>
           <Link
             to="/about"
-            className="group mt-8 inline-flex w-fit items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-bronze"
+            className="group mt-8 inline-flex w-fit items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-brand"
           >
             The Full Story
-            <span className="inline-block h-px w-10 bg-bronze transition-all duration-500 group-hover:w-16" />
+            <span className="inline-block h-px w-10 bg-brand transition-all duration-500 group-hover:w-16" />
           </Link>
         </Reveal>
       </div>
@@ -138,7 +138,7 @@ function ServicesIndex() {
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <Reveal>
           <SectionHeading eyebrow="What We Do">
-            Capabilities <span className="text-bronze italic">in full</span>
+            Capabilities <span className="text-brand italic">in full</span>
           </SectionHeading>
         </Reveal>
         <Reveal delay={120}>
@@ -162,7 +162,7 @@ function ServicesIndex() {
                 >
                   <span
                     className={`font-mono text-xs transition-colors duration-300 ${
-                      isActive ? 'text-bronze' : 'text-bone-dim'
+                      isActive ? 'text-brand' : 'text-bone-dim'
                     }`}
                   >
                     {service.index}
@@ -170,7 +170,7 @@ function ServicesIndex() {
 
                   <span
                     className={`display flex-1 text-2xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:text-4xl ${
-                      isActive ? 'translate-x-2 text-bronze' : 'text-bone'
+                      isActive ? 'translate-x-2 text-brand' : 'text-bone'
                     }`}
                   >
                     {service.title}
@@ -178,7 +178,7 @@ function ServicesIndex() {
 
                   <span
                     className={`font-mono text-lg transition-all duration-500 ${
-                      isActive ? 'translate-x-0 text-bronze opacity-100' : '-translate-x-3 opacity-0'
+                      isActive ? 'translate-x-0 text-brand opacity-100' : '-translate-x-3 opacity-0'
                     }`}
                   >
                     &#8594;
@@ -222,7 +222,7 @@ function FeaturedProjects() {
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <Reveal>
           <SectionHeading eyebrow="Selected Work">
-            Delivered <span className="text-bronze italic">across</span> the Gulf
+            Delivered <span className="text-brand italic">across</span> the Gulf
           </SectionHeading>
         </Reveal>
         <Reveal delay={120}>
@@ -261,7 +261,7 @@ function Values() {
           <SectionHeading eyebrow="Why Dynamic Delta">
             The standards
             <br />
-            we <span className="text-bronze italic">refuse</span>
+            we <span className="text-brand italic">refuse</span>
             <br />
             to lower.
           </SectionHeading>
@@ -276,7 +276,7 @@ function Values() {
             <Reveal
               key={value.title}
               delay={i * 90}
-              className="bg-ink p-8 transition-colors duration-500 hover:bg-navy md:p-10"
+              className="bg-ink p-8 transition-colors duration-500 hover:bg-surface md:p-10"
             >
               <NumberedCard index={i + 1} {...value} />
             </Reveal>
@@ -306,7 +306,7 @@ function CallToAction() {
         <Reveal>
           <p className="eyebrow justify-center">Let&rsquo;s Build</p>
           <h2 className="display mx-auto mt-8 max-w-4xl text-5xl md:text-7xl">
-            Tell us what you need <span className="text-bronze italic">engineered.</span>
+            Tell us what you need <span className="text-brand italic">engineered.</span>
           </h2>
           <p className="mx-auto mt-8 max-w-xl leading-relaxed text-bone-dim">
             From a single system to a full turnkey package — our engineers will scope it, price it

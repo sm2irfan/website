@@ -17,12 +17,12 @@ function Footer() {
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-4 md:px-10">
         <div className="md:col-span-1">
           <p className="font-display text-2xl">
-            Dynamic<span className="text-bronze">Delta</span>
+            Dynamic<span className="text-brand">Delta</span>
           </p>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-bone-dim">
             {company.tagline}
           </p>
-          <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.2em] text-bronze">
+          <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.2em] text-brand">
             Est. {company.founded} · Dubai
           </p>
         </div>
@@ -34,7 +34,7 @@ function Footer() {
               <li key={link.to}>
                 <Link
                   to={link.to}
-                  className="text-sm text-bone-dim transition-colors duration-300 hover:text-bronze"
+                  className="text-sm text-bone-dim transition-colors duration-300 hover:text-brand"
                 >
                   {link.label}
                 </Link>
@@ -50,7 +50,7 @@ function Footer() {
               <li key={service.id}>
                 <Link
                   to="/services"
-                  className="text-sm text-bone-dim transition-colors duration-300 hover:text-bronze"
+                  className="text-sm text-bone-dim transition-colors duration-300 hover:text-brand"
                 >
                   {service.title}
                 </Link>
@@ -68,7 +68,7 @@ function Footer() {
                 <a
                   key={phone}
                   href={telHref(phone)}
-                  className="block font-mono transition-colors duration-300 hover:text-bronze"
+                  className="block font-mono transition-colors duration-300 hover:text-brand"
                 >
                   {phone}
                 </a>
@@ -76,7 +76,7 @@ function Footer() {
             </div>
             <a
               href={mailHref(company.email)}
-              className="block transition-colors duration-300 hover:text-bronze"
+              className="block transition-colors duration-300 hover:text-brand"
             >
               {company.email}
             </a>

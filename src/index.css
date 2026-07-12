@@ -2,18 +2,28 @@
 
 /* ------------------------------------------------------------------
    Dynamic Delta Group — design tokens
-   Palette: graphite/ink base, warm bronze accent, deep navy surfaces
+   Palette: graphite/ink base, brand red accent, warm raised surfaces
    Type:    Bodoni Moda (display) · Inter (UI) · JetBrains Mono (labels)
 ------------------------------------------------------------------- */
 @theme {
   --color-ink: #08090b;
   --color-ink-soft: #0f1115;
-  --color-navy: #0d1826;
-  --color-navy-soft: #142438;
+
+  /* Raised surfaces (card hover, panels) — warmed toward the brand red
+     so they sit with the accent instead of fighting it. */
+  --color-surface: #1c100e;
+  --color-surface-soft: #2b1a16;
+
   --color-bone: #f2efe9;
   --color-bone-dim: #a7a49e;
-  --color-bronze: #c0954e;
-  --color-bronze-lit: #e0bd7d;
+
+  /* Brand red, taken from the Dynamic Delta logo (#a62619).
+     The logo red is too dark to read as text or as a button fill on ink,
+     so the UI uses a brightened tint of it and keeps the true red for the mark. */
+  --color-brand: #d8382a;
+  --color-brand-lit: #f2705e;
+  --color-brand-deep: #a62619;
+
   --color-line: rgba(242, 239, 233, 0.12);
 
   --font-display: "Bodoni Moda", ui-serif, Georgia, serif;
@@ -37,11 +47,11 @@
   }
 
   ::selection {
-    background: var(--color-bronze);
+    background: var(--color-brand);
     color: var(--color-ink);
   }
 
-  /* Slim bronze scrollbar to match the chrome */
+  /* Slim scrollbar that turns brand red on hover */
   ::-webkit-scrollbar {
     width: 10px;
   }
@@ -49,10 +59,10 @@
     background: var(--color-ink);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--color-navy-soft);
+    background: var(--color-surface-soft);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-bronze);
+    background: var(--color-brand);
   }
 }
 
@@ -63,7 +73,7 @@
     font-size: 0.6875rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--color-bronze);
+    color: var(--color-brand);
   }
 
   /* Editorial display heading — light weight, tight leading, large */

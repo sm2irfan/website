@@ -32,7 +32,7 @@ function Projects() {
               onClick={() => setFilter(sector)}
               className={`border px-6 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-all duration-400 ${
                 filter === sector
-                  ? 'border-bronze bg-bronze text-ink'
+                  ? 'border-brand bg-brand text-ink'
                   : 'border-line text-bone-dim hover:border-bone hover:text-bone'
               }`}
             >
@@ -65,7 +65,7 @@ function Projects() {
         <Reveal>
           <p className="eyebrow justify-center">What&rsquo;s Next</p>
           <h2 className="display mx-auto mt-8 max-w-3xl text-4xl md:text-6xl">
-            Your project belongs <span className="text-bronze italic">on this page.</span>
+            Your project belongs <span className="text-brand italic">on this page.</span>
           </h2>
           <div className="mt-12 flex justify-center">
             <Button to="/contact">Start the Conversation</Button>

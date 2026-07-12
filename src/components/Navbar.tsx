@@ -53,7 +53,7 @@ function Navbar() {
                 end={link.to === '/'}
                 className={({ isActive }) =>
                   `relative font-mono text-[11px] uppercase tracking-[0.22em] transition-colors duration-300 ${
-                    isActive ? 'text-bronze' : 'text-bone-dim hover:text-bone'
+                    isActive ? 'text-brand' : 'text-bone-dim hover:text-bone'
                   }`
                 }
               >
@@ -61,7 +61,7 @@ function Navbar() {
                   <>
                     {link.label}
                     <span
-                      className={`absolute -bottom-1.5 left-0 h-px bg-bronze transition-all duration-400 ${
+                      className={`absolute -bottom-1.5 left-0 h-px bg-brand transition-all duration-400 ${
                         isActive ? 'w-full' : 'w-0'
                       }`}
                     />
@@ -74,7 +74,7 @@ function Navbar() {
           <div className="flex items-center gap-6">
             <a
               href={telHref(company.phones[0])}
-              className="hidden font-mono text-[11px] tracking-[0.15em] text-bone-dim transition-colors hover:text-bronze xl:block"
+              className="hidden font-mono text-[11px] tracking-[0.15em] text-bone-dim transition-colors hover:text-brand xl:block"
             >
               {company.phones[0]}
             </a>
@@ -137,8 +137,8 @@ function Navbar() {
                       transitionDelay: `${menuOpen ? DOORS_CLOSED + i * 130 : 0}ms`,
                     }}
                   >
-                    <span className="font-mono text-[11px] text-bronze">{pad(i + 1)}</span>
-                    <span className="display text-4xl text-bone transition-colors duration-300 group-hover:text-bronze md:text-6xl">
+                    <span className="font-mono text-[11px] text-brand">{pad(i + 1)}</span>
+                    <span className="display text-4xl text-bone transition-colors duration-300 group-hover:text-brand md:text-6xl">
                       {link.label}
                     </span>
                   </Link>
@@ -158,7 +158,7 @@ function Navbar() {
                 <p className="eyebrow">Enquiries</p>
                 <a
                   href={mailHref(company.email)}
-                  className="mt-4 block font-display text-2xl text-bone transition-colors hover:text-bronze"
+                  className="mt-4 block font-display text-2xl text-bone transition-colors hover:text-brand"
                 >
                   {company.email}
                 </a>
@@ -166,7 +166,7 @@ function Navbar() {
                   <a
                     key={phone}
                     href={telHref(phone)}
-                    className="mt-1 block font-mono text-sm text-bone-dim transition-colors hover:text-bronze"
+                    className="mt-1 block font-mono text-sm text-bone-dim transition-colors hover:text-brand"
                   >
                     {phone}
                   </a>

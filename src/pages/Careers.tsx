@@ -46,7 +46,7 @@ function Careers() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <Reveal>
             <SectionHeading eyebrow="Open Positions">
-              Currently <span className="text-bronze italic">hiring</span>
+              Currently <span className="text-brand italic">hiring</span>
             </SectionHeading>
           </Reveal>
           <Reveal delay={120}>
@@ -54,7 +54,7 @@ function Careers() {
               Don&rsquo;t see your discipline? Send your CV to{' '}
               <a
                 href={mailHref(company.email)}
-                className="text-bronze transition-colors hover:text-bronze-lit"
+                className="text-brand transition-colors hover:text-brand-lit"
               >
                 {company.email}
               </a>{' '}
@@ -71,10 +71,10 @@ function Careers() {
                 className="block"
               >
                 <Row className="items-center md:grid-cols-[2fr_1fr_1fr_auto]">
-                  <h3 className="display text-2xl transition-colors duration-300 group-hover:text-bronze md:text-3xl">
+                  <h3 className="display text-2xl transition-colors duration-300 group-hover:text-brand md:text-3xl">
                     {job.role}
                   </h3>
-                  <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-bronze">
+                  <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-brand">
                     {job.division}
                   </p>
                   <p className="text-sm text-bone-dim">{job.location}</p>
@@ -83,7 +83,7 @@ function Careers() {
                     <span className="border border-line px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-bone-dim">
                       {job.type}
                     </span>
-                    <span className="font-mono text-lg text-bronze transition-transform duration-500 group-hover:translate-x-1">
+                    <span className="font-mono text-lg text-brand transition-transform duration-500 group-hover:translate-x-1">
                       &#8594;
                     </span>
                   </div>
@@ -99,7 +99,7 @@ function Careers() {
       <Section className="border-t border-line bg-ink-soft">
         <Reveal>
           <SectionHeading eyebrow="Life at Dynamic Delta">
-            We look after <span className="text-bronze italic">our own</span>
+            We look after <span className="text-brand italic">our own</span>
           </SectionHeading>
         </Reveal>
 
@@ -108,7 +108,7 @@ function Careers() {
             <Reveal
               key={benefit.title}
               delay={i * 90}
-              className="bg-ink-soft p-8 transition-colors duration-500 hover:bg-navy md:p-10"
+              className="bg-ink-soft p-8 transition-colors duration-500 hover:bg-surface md:p-10"
             >
               <NumberedCard index={i + 1} {...benefit} />
             </Reveal>

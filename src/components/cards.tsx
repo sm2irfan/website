@@ -20,7 +20,7 @@ export function NumberedCard({
 }) {
   return (
     <>
-      <span className="font-mono text-[11px] text-bronze">{pad(index)}</span>
+      <span className="font-mono text-[11px] text-brand">{pad(index)}</span>
       <h3 className="display mt-6 text-2xl">{title}</h3>
       <p className="mt-4 text-sm leading-relaxed text-bone-dim">{body}</p>
     </>
@@ -53,7 +53,7 @@ export function ProjectMedia({
 
       {scopePanel && (
         <div className="absolute inset-x-0 bottom-0 translate-y-full bg-ink/90 px-6 py-5 backdrop-blur-sm transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0">
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-bronze">Scope</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-brand">Scope</p>
           <p className="mt-1 text-sm text-bone">{project.scope}</p>
         </div>
       )}
@@ -74,7 +74,7 @@ export function ProjectMeta({
   return (
     <div className="mt-6 flex items-start justify-between gap-6 border-t border-line pt-6">
       <div>
-        <Heading className="display text-2xl transition-colors duration-300 group-hover:text-bronze md:text-3xl">
+        <Heading className="display text-2xl transition-colors duration-300 group-hover:text-brand md:text-3xl">
           {project.title}
         </Heading>
         <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.2em] text-bone-dim">
@@ -83,7 +83,7 @@ export function ProjectMeta({
       </div>
 
       <div className="text-right">
-        <p className="font-mono text-[11px] text-bronze">{project.year}</p>
+        <p className="font-mono text-[11px] text-brand">{project.year}</p>
         {showScope && <p className="mt-2 text-xs text-bone-dim">{project.scope}</p>}
       </div>
     </div>
@@ -101,7 +101,7 @@ export function PointList({ points }: { points: readonly string[] }) {
           key={point}
           className="flex items-center gap-3 bg-ink px-5 py-4 text-sm text-bone-dim transition-colors duration-300 hover:text-bone"
         >
-          <span className="text-bronze">&#9670;</span>
+          <span className="text-brand">&#9670;</span>
           {point}
         </li>
       ))}

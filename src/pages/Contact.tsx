@@ -6,12 +6,12 @@ import { company, services } from '../data/site'
 import { mailHref, telHref } from '../lib/utils'
 
 const LABEL =
-  'font-mono text-[11px] uppercase tracking-[0.2em] text-bone-dim transition-colors duration-300 group-focus-within:text-bronze'
+  'font-mono text-[11px] uppercase tracking-[0.2em] text-bone-dim transition-colors duration-300 group-focus-within:text-brand'
 
 const CONTROL =
-  'mt-3 w-full border-b border-line bg-transparent pb-3 text-lg text-bone transition-colors duration-300 outline-none focus:border-bronze'
+  'mt-3 w-full border-b border-line bg-transparent pb-3 text-lg text-bone transition-colors duration-300 outline-none focus:border-brand'
 
-/** Underlined control whose label and rule light bronze on focus. */
+/** Underlined control whose label and rule light brand on focus. */
 function Field({
   label,
   required = false,
@@ -25,7 +25,7 @@ function Field({
     <label className="group block">
       <span className={LABEL}>
         {label}
-        {required && <span className="text-bronze"> *</span>}
+        {required && <span className="text-brand"> *</span>}
       </span>
       {children}
     </label>
@@ -68,8 +68,8 @@ function Contact() {
             <h2 className="display mt-6 text-4xl md:text-5xl">Send us the brief</h2>
 
             {sent ? (
-              <div className="mt-12 border border-bronze/40 bg-navy p-10">
-                <p className="display text-3xl text-bronze">Thank you.</p>
+              <div className="mt-12 border border-brand/40 bg-surface p-10">
+                <p className="display text-3xl text-brand">Thank you.</p>
                 <p className="mt-4 leading-relaxed text-bone-dim">
                   Your enquiry has been captured. One of our engineers will be in touch within one
                   working day.
@@ -77,7 +77,7 @@ function Contact() {
                 <button
                   type="button"
                   onClick={() => setSent(false)}
-                  className="mt-8 font-mono text-[11px] uppercase tracking-[0.22em] text-bronze transition-colors hover:text-bronze-lit"
+                  className="mt-8 font-mono text-[11px] uppercase tracking-[0.22em] text-brand transition-colors hover:text-brand-lit"
                 >
                   Send another &#8594;
                 </button>
@@ -137,7 +137,7 @@ function Contact() {
                     <a
                       key={phone}
                       href={telHref(phone)}
-                      className="mt-3 block font-display text-2xl text-bone transition-colors duration-300 hover:text-bronze"
+                      className="mt-3 block font-display text-2xl text-bone transition-colors duration-300 hover:text-brand"
                     >
                       {phone}
                     </a>
@@ -147,7 +147,7 @@ function Contact() {
                 <Detail label="Email">
                   <a
                     href={mailHref(company.email)}
-                    className="mt-3 block font-display text-2xl text-bone transition-colors duration-300 hover:text-bronze"
+                    className="mt-3 block font-display text-2xl text-bone transition-colors duration-300 hover:text-brand"
                   >
                     {company.email}
                   </a>
@@ -161,9 +161,9 @@ function Contact() {
             </div>
 
             {/* Map placeholder — drop in an embed once the client provides one */}
-            <div className="mt-8 flex aspect-[16/10] items-center justify-center border border-line bg-navy">
+            <div className="mt-8 flex aspect-[16/10] items-center justify-center border border-line bg-surface">
               <div className="text-center">
-                <DeltaMark className="mx-auto h-8 w-auto text-bronze" />
+                <DeltaMark className="mx-auto h-8 w-auto text-brand" />
                 <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-bone-dim">
                   The Metropolis Tower · Business Bay
                 </p>

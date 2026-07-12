@@ -21,9 +21,9 @@ export function DeltaMark({ className = '' }: { className?: string }) {
 export function Logo() {
   return (
     <Link to="/" className="flex items-center gap-3" aria-label="Dynamic Delta — home">
-      <DeltaMark className="h-7 w-auto text-bronze" />
+      <DeltaMark className="h-7 w-auto text-brand" />
       <span className="font-display text-lg tracking-tight text-bone">
-        Dynamic<span className="text-bronze">Delta</span>
+        Dynamic<span className="text-brand">Delta</span>
       </span>
     </Link>
   )
