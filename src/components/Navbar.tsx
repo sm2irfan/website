@@ -4,6 +4,10 @@ import { Logo } from './Logo'
 import { company, nav } from '../data/site'
 import { pad, telHref, mailHref } from '../lib/utils'
 
+/** How long the sliding doors take to meet — content waits for this. */
+const DOOR_TRAVEL = 900
+const DOORS_CLOSED = DOOR_TRAVEL - 150 // start the cascade just as they land
+
 function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -98,23 +102,39 @@ function Navbar() {
         </div>
       </header>
 
-      {/* Fullscreen overlay menu */}
+      {/* Overlay menu — two panels close like sliding doors, then content fades up */}
       <div
-        className={`fixed inset-0 z-40 bg-ink transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          menuOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
-        }`}
+        inert={!menuOpen}
+        className={`fixed inset-0 z-40 ${menuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
       >
-        <div className="mx-auto grid h-full max-w-7xl grid-cols-1 items-center gap-16 px-6 pt-24 md:px-10 lg:grid-cols-[1.4fr_1fr]">
+        {/* Left door. Overlaps the seam by a pixel so no hairline shows between halves. */}
+        <div
+          className={`absolute inset-y-0 left-0 w-[calc(50%+1px)] bg-ink transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            menuOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
+        />
+        {/* Right door */}
+        <div
+          className={`absolute inset-y-0 right-0 w-[calc(50%+1px)] bg-ink transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            menuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        />
+
+        <div className="relative mx-auto grid h-full max-w-7xl grid-cols-1 items-center gap-16 px-6 pt-24 md:px-10 lg:grid-cols-[1.4fr_1fr]">
+          {/* Left panel: links enter from the left, top one first */}
           <nav>
             <ul>
               {nav.map((link, i) => (
-                <li key={link.to} className="overflow-hidden border-b border-line">
+                <li key={link.to} className="overflow-hidden">
+                  {/* Border lives on the animated element, so it hides with the link */}
                   <Link
                     to={link.to}
-                    className="group flex items-baseline gap-6 py-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    className="group flex items-baseline gap-6 border-b border-line py-4 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                     style={{
-                      transform: menuOpen ? 'none' : 'translateY(100%)',
-                      transitionDelay: `${menuOpen ? 120 + i * 60 : 0}ms`,
+                      opacity: menuOpen ? 1 : 0,
+                      transform: menuOpen ? 'none' : 'translateX(-100%)',
+                      // Wait for the doors to shut, then cascade down the list
+                      transitionDelay: `${menuOpen ? DOORS_CLOSED + i * 90 : 0}ms`,
                     }}
                   >
                     <span className="font-mono text-[11px] text-bronze">{pad(i + 1)}</span>
@@ -127,37 +147,44 @@ function Navbar() {
             </ul>
           </nav>
 
-          <div
-            className="space-y-8 transition-all duration-700"
-            style={{
-              opacity: menuOpen ? 1 : 0,
-              transform: menuOpen ? 'none' : 'translateY(24px)',
-              transitionDelay: menuOpen ? '420ms' : '0ms',
-            }}
-          >
-            <div>
-              <p className="eyebrow">Studio</p>
-              <p className="mt-4 max-w-xs leading-relaxed text-bone-dim">{company.address}</p>
-            </div>
-
-            <div>
-              <p className="eyebrow">Enquiries</p>
-              <a
-                href={mailHref(company.email)}
-                className="mt-4 block font-display text-2xl text-bone transition-colors hover:text-bronze"
-              >
-                {company.email}
-              </a>
-              {company.phones.map((phone) => (
+          {/* Right panel: blocks enter from the right, on the same cascade */}
+          <div className="space-y-8">
+            {[
+              <>
+                <p className="eyebrow">Studio</p>
+                <p className="mt-4 max-w-xs leading-relaxed text-bone-dim">{company.address}</p>
+              </>,
+              <>
+                <p className="eyebrow">Enquiries</p>
                 <a
-                  key={phone}
-                  href={telHref(phone)}
-                  className="mt-1 block font-mono text-sm text-bone-dim transition-colors hover:text-bronze"
+                  href={mailHref(company.email)}
+                  className="mt-4 block font-display text-2xl text-bone transition-colors hover:text-bronze"
                 >
-                  {phone}
+                  {company.email}
                 </a>
-              ))}
-            </div>
+                {company.phones.map((phone) => (
+                  <a
+                    key={phone}
+                    href={telHref(phone)}
+                    className="mt-1 block font-mono text-sm text-bone-dim transition-colors hover:text-bronze"
+                  >
+                    {phone}
+                  </a>
+                ))}
+              </>,
+            ].map((block, i) => (
+              <div
+                key={i}
+                className="overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                style={{
+                  opacity: menuOpen ? 1 : 0,
+                  transform: menuOpen ? 'none' : 'translateX(100%)',
+                  transitionDelay: `${menuOpen ? DOORS_CLOSED + i * 140 : 0}ms`,
+                }}
+              >
+                {block}
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -114,33 +114,33 @@
   }
 }
 
-/* ------------------- hero image zoom (in ⇄ out, forever) -------------------
-   Tune these two numbers to control the effect:
-
-   --zoom-duration : seconds for ONE leg (zoom in). `alternate` then plays the
-                     zoom out, so a full in-and-out cycle takes twice this.
-   --zoom-scale    : how far it zooms in. 1.18 = 18% larger than the start.
+/* ------------------- hero image zoom (in → out, forever) -------------------
+   On load the image zooms IN to --zoom-scale, then back OUT to --zoom-from,
+   and repeats. --zoom-duration is one FULL in-and-out cycle, in seconds.
 
    Override per image with an inline style, e.g.
      <img className="ken-burns" style={{ '--zoom-duration': '18s' }} />
 --------------------------------------------------------------------------- */
 :root {
-  --zoom-duration: 10s;
-  --zoom-from: 1.08;
-  --zoom-scale: 1.18;
+  --zoom-duration: 240s;
+  --zoom-from: 1.05;
+  --zoom-scale: 5.2;
 }
 
 @keyframes ken-burns {
-  from {
+  0% {
     transform: scale(var(--zoom-from));
   }
-  to {
-    transform: scale(var(--zoom-scale));
+  50% {
+    transform: scale(var(--zoom-scale)); /* fully zoomed in at the midpoint */
+  }
+  100% {
+    transform: scale(var(--zoom-from));
   }
 }
 
 .ken-burns {
-  animation: ken-burns var(--zoom-duration) ease-in-out infinite alternate;
+  animation: ken-burns var(--zoom-duration) ease-in-out infinite;
 }
 
 /* Infinite capability ticker */
