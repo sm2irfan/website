@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import logoImage from '../assets/images/logo_latest.png'
 
 /**
  * The Dynamic Delta spiral, hand-authored from the brand mark.
@@ -17,14 +18,15 @@ export function DeltaMark({ className = '' }: { className?: string }) {
   )
 }
 
-/** Mark + wordmark, linking home. */
+/** Brand plaque — the original logo artwork, on a transparent background. */
 export function Logo() {
   return (
-    <Link to="/" className="flex items-center gap-3" aria-label="Dynamic Delta — home">
-      <DeltaMark className="h-7 w-auto text-brand" />
-      <span className="font-display text-lg tracking-tight text-bone">
-        Dynamic<span className="text-brand">Delta</span>
-      </span>
+    <Link to="/" aria-label="Dynamic Delta — home" className="group block h-14 md:h-16">
+      <img
+        src={logoImage}
+        alt="Dynamic Delta — since 2005"
+        className="h-full w-auto object-contain transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:scale-105"
+      />
     </Link>
   )
 }

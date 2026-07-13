@@ -2,29 +2,28 @@
 
 /* ------------------------------------------------------------------
    Dynamic Delta Group — design tokens
-   Palette: graphite/ink base, brand red accent, warm raised surfaces
+   Palette: black & gold luxury — near-black base, brushed-brass accent
    Type:    Bodoni Moda (display) · Inter (UI) · JetBrains Mono (labels)
 ------------------------------------------------------------------- */
 @theme {
-  --color-ink: #08090b;
-  --color-ink-soft: #0f1115;
+  --color-ink: #0a0a0a;
+  --color-ink-soft: #121110;
 
-  /* Raised surfaces (card hover, panels) — warmed toward the brand red
-     so they sit with the accent instead of fighting it. */
-  --color-surface: #1c100e;
-  --color-surface-soft: #2b1a16;
+  /* Raised surfaces (card hover, panels) — warmed toward brown-black
+     so they sit with the gold accent instead of reading as flat grey. */
+  --color-surface: #16130f;
+  --color-surface-soft: #201c15;
 
-  --color-bone: #f2efe9;
-  --color-bone-dim: #a7a49e;
+  --color-bone: #f3ede0;
+  --color-bone-dim: #a89f8f;
 
-  /* Brand red, taken from the Dynamic Delta logo (#a62619).
-     The logo red is too dark to read as text or as a button fill on ink,
-     so the UI uses a brightened tint of it and keeps the true red for the mark. */
-  --color-brand: #8b0000;
-  --color-brand-lit: #f2705e;
+  /* Brushed-brass gold, the primary luxury accent. The logo's true red
+     (#a62619) is kept only for the mark itself (favicon), not the UI. */
+  --color-brand: #c8a44d;
+  --color-brand-lit: #e6c777;
   --color-brand-deep: #a62619;
 
-  --color-line: rgba(242, 239, 233, 0.12);
+  --color-line: rgba(243, 237, 224, 0.12);
 
   --font-display: "Bodoni Moda", ui-serif, Georgia, serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
