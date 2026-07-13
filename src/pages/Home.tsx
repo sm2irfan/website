@@ -69,12 +69,12 @@ function Hero() {
       </div>
 
       {/* Vertical scroll cue pinned to the right rail */}
-      <div className="absolute right-10 bottom-10 hidden items-center gap-4 lg:flex">
+      {/* <div className="absolute right-10 bottom-10 hidden items-center gap-4 lg:flex">
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-bone-dim [writing-mode:vertical-rl]">
           Scroll
         </span>
         <span className="block h-16 w-px bg-gradient-to-b from-brand to-transparent" />
-      </div>
+      </div> */}
     </section>
   )
 }

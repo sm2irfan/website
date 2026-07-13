@@ -2,7 +2,11 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
+## to run in debug mode
 cd "c:/Users/Azam/Desktop/Dynamic/website" && npm run dev
+
+## to run build file
+npx serve -s
 
 Currently, two official plugins are available:
 

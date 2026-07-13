@@ -20,7 +20,7 @@
   /* Brand red, taken from the Dynamic Delta logo (#a62619).
      The logo red is too dark to read as text or as a button fill on ink,
      so the UI uses a brightened tint of it and keeps the true red for the mark. */
-  --color-brand: #d8382a;
+  --color-brand: #8b0000;
   --color-brand-lit: #f2705e;
   --color-brand-deep: #a62619;
 
