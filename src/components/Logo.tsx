@@ -21,7 +21,7 @@ export function DeltaMark({ className = '' }: { className?: string }) {
 /** Brand plaque — the original logo artwork, on a transparent background. */
 export function Logo() {
   return (
-    <Link to="/" aria-label="Dynamic Delta — home" className="group block h-14 md:h-16">
+    <Link to="/" aria-label="Dynamic Delta — home" className="group block h-17 md:h-21">
       <img
         src={logoImage}
         alt="Dynamic Delta — since 2005"
