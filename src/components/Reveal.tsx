@@ -9,11 +9,8 @@ type RevealProps = {
 }
 
 /**
- * Fades + lifts its children into place the first time they come near the
- * viewport, then stays settled — it doesn't hide again on scroll-up. The
- * generous bottom rootMargin pre-triggers content that's already close to
- * the fold on load (e.g. right below a tall hero), so pages don't render
- * with a blank gap before the user scrolls.
+ * Fades + lifts its children into place whenever they enter the viewport,
+ * triggering the animation every scroll cycle.
  */
 function Reveal({ children, delay = 0, className = '', as: Tag = 'div' }: RevealProps) {
   const ref = useRef<HTMLElement>(null)
@@ -26,10 +23,11 @@ function Reveal({ children, delay = 0, className = '', as: Tag = 'div' }: Reveal
       ([entry]) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible')
-          observer.unobserve(entry.target)
+        } else {
+          entry.target.classList.remove('is-visible')
         }
       },
-      { threshold: 0, rootMargin: '0px 0px 150px 0px' },
+      { threshold: 0.15, rootMargin: '0px 0px -60px 0px' },
     )
 
     observer.observe(el)
