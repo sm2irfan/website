@@ -35,6 +35,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
@@ -43,6 +44,8 @@
     font-family: var(--font-sans);
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   ::selection {
