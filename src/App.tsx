@@ -9,7 +9,7 @@ import Contact from './pages/Contact'
 
 function App() {
   return (
-    <BrowserRouter basename="/website">
+    <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
