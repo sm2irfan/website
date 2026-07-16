@@ -2,11 +2,29 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
-## to run in debug mode
-cd "c:/Users/Azam/Desktop/Dynamic/website" && npm run dev
+## Running
 
-## to run build file
-npx serve -s
+To run in debug mode (dev server with HMR):
+```
+cd "c:/Users/Azam/Desktop/Dynamic/website" && npm run dev
+```
+
+To build and preview the production build locally:
+```
+npm run build
+npx serve -s dist
+```
+
+## Deployment
+
+This site is deployed to GitHub Pages via the `gh-pages` package, published at https://sm2irfan.github.io/website.
+
+To deploy the latest build:
+```
+npm run deploy
+```
+
+This runs `predeploy` (`npm run build`) automatically, then pushes the contents of `dist` to the `gh-pages` branch.
 
 Currently, two official plugins are available:
 
