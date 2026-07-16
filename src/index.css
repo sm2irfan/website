@@ -145,6 +145,9 @@
 .rise {
   display: block;
   overflow: hidden;
+  /* Safety net: wrap instead of silently clipping if a heading word is
+     ever wider than its column on a narrow screen. */
+  overflow-wrap: break-word;
 }
 .rise > span {
   display: block;

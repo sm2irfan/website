@@ -33,7 +33,7 @@ export function Eyebrow({ children }: { children: ReactNode }) {
 /** Eyebrow + display heading — the opening pair of nearly every section. */
 export function SectionHeading({
   eyebrow,
-  size = 'text-4xl md:text-6xl',
+  size = 'text-3xl sm:text-4xl md:text-6xl',
   children,
 }: {
   eyebrow: string
@@ -200,7 +200,7 @@ export function PageHero({
 
       <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 md:px-10">
         <span className="eyebrow bg-paper/15 text-brand-lit ring-1 ring-paper/25">{eyebrow}</span>
-        <h1 className="rise display mt-6 text-5xl text-paper md:text-7xl">
+        <h1 className="rise display mt-6 text-3xl text-paper sm:text-5xl md:text-7xl">
           <span>{title}</span>
         </h1>
         <p className="mt-6 max-w-xl text-lg leading-relaxed text-paper/75">{lead}</p>

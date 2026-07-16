@@ -44,7 +44,7 @@ function Hero() {
           </span>
         </div>
 
-        <h1 className="display mt-8 text-6xl text-paper md:text-8xl lg:text-[7.5rem]">
+        <h1 className="display mt-8 text-4xl text-paper sm:text-6xl md:text-8xl lg:text-[7.5rem]">
           {HERO_LINES.map((line, i) => (
             <span key={i} className="rise" style={cssVars({ '--rise-delay': `${line.delay}ms` })}>
               <span>{line.content}</span>
@@ -293,7 +293,7 @@ function CallToAction() {
             <p className="eyebrow mx-auto justify-center border-ink/20 bg-ink/10 text-ink">
               Let&rsquo;s Build
             </p>
-            <h2 className="display mx-auto mt-8 max-w-4xl text-5xl text-ink md:text-7xl">
+            <h2 className="display mx-auto mt-8 max-w-4xl text-3xl text-ink sm:text-5xl md:text-7xl">
               Tell us what you need <span className="italic">engineered.</span>
             </h2>
             <p className="mx-auto mt-8 max-w-xl leading-relaxed text-ink/80">
