@@ -1,17 +1,16 @@
 import { useState, type FormEvent, type ReactNode } from 'react'
 import Reveal from '../components/Reveal'
 import { Button, Eyebrow, PageHero, Section } from '../components/ui'
-import { DeltaMark } from '../components/Logo'
+import logoImage from '../assets/images/logo_latest.png'
 import { company, services } from '../data/site'
 import { mailHref, telHref } from '../lib/utils'
 
-const LABEL =
-  'font-mono text-[11px] uppercase tracking-[0.2em] text-bone-dim transition-colors duration-300 group-focus-within:text-brand'
+const LABEL = 'text-xs font-bold uppercase tracking-wide text-ink-dim transition-colors duration-300 group-focus-within:text-brand-deep'
 
 const CONTROL =
-  'mt-3 w-full border-b border-line bg-transparent pb-3 text-lg text-bone transition-colors duration-300 outline-none focus:border-brand'
+  'mt-3 w-full rounded-2xl border border-line bg-surface px-5 py-3.5 text-base text-ink shadow-sm transition-all duration-300 outline-none focus:border-brand focus:shadow-[0_0_0_4px_rgba(200,164,77,0.15)]'
 
-/** Underlined control whose label and rule light brand on focus. */
+/** Rounded field whose label lights up brand on focus. */
 function Field({
   label,
   required = false,
@@ -25,7 +24,7 @@ function Field({
     <label className="group block">
       <span className={LABEL}>
         {label}
-        {required && <span className="text-brand"> *</span>}
+        {required && <span className="text-brand-deep"> *</span>}
       </span>
       {children}
     </label>
@@ -36,7 +35,7 @@ function Field({
 function Detail({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div>
-      <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-bone-dim">{label}</p>
+      <p className="text-xs font-bold uppercase tracking-wide text-ink-dim">{label}</p>
       {children}
     </div>
   )
@@ -68,23 +67,23 @@ function Contact() {
             <h2 className="display mt-6 text-4xl md:text-5xl">Send us the brief</h2>
 
             {sent ? (
-              <div className="mt-12 border border-brand/40 bg-surface p-10">
-                <p className="display text-3xl text-brand">Thank you.</p>
-                <p className="mt-4 leading-relaxed text-bone-dim">
+              <div className="card mt-12 p-10">
+                <p className="display text-3xl text-brand-deep">Thank you.</p>
+                <p className="mt-4 leading-relaxed text-ink-dim">
                   Your enquiry has been captured. One of our engineers will be in touch within one
                   working day.
                 </p>
                 <button
                   type="button"
                   onClick={() => setSent(false)}
-                  className="mt-8 font-mono text-[11px] uppercase tracking-[0.22em] text-brand transition-colors hover:text-brand-lit"
+                  className="mt-8 text-sm font-bold text-brand-deep transition-colors hover:text-brand"
                 >
                   Send another &#8594;
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="mt-12 space-y-10">
-                <div className="grid gap-10 sm:grid-cols-2">
+              <form onSubmit={handleSubmit} className="mt-12 space-y-8">
+                <div className="grid gap-6 sm:grid-cols-2">
                   <Field label="Full Name" required>
                     <input type="text" name="name" required className={CONTROL} />
                   </Field>
@@ -101,11 +100,9 @@ function Contact() {
 
                 <Field label="Division of Interest">
                   <select name="division" defaultValue="" className={CONTROL}>
-                    <option value="" className="bg-ink">
-                      Select a division
-                    </option>
+                    <option value="">Select a division</option>
                     {services.map((service) => (
-                      <option key={service.id} value={service.id} className="bg-ink">
+                      <option key={service.id} value={service.id}>
                         {service.title}
                       </option>
                     ))}
@@ -125,11 +122,12 @@ function Contact() {
 
           {/* Coordinates */}
           <Reveal delay={140}>
-            <div className="border border-line bg-ink-soft p-10">
+            <div className="card p-10">
               <Eyebrow>Head Office</Eyebrow>
               <address className="mt-8 space-y-10 not-italic">
                 <Detail label="Address">
-                  <p className="mt-3 text-lg leading-relaxed text-bone">{company.address}</p>
+                  <p className="mt-3 text-lg leading-relaxed text-ink">{company.address}</p>
+                  <p className="mt-1 text-sm text-ink-dim">{company.poBox}</p>
                 </Detail>
 
                 <Detail label="Telephone">
@@ -137,7 +135,7 @@ function Contact() {
                     <a
                       key={phone}
                       href={telHref(phone)}
-                      className="mt-3 block font-display text-2xl text-bone transition-colors duration-300 hover:text-brand"
+                      className="mt-3 block font-display text-2xl font-bold text-ink transition-colors duration-300 hover:text-brand-deep"
                     >
                       {phone}
                     </a>
@@ -147,25 +145,25 @@ function Contact() {
                 <Detail label="Email">
                   <a
                     href={mailHref(company.email)}
-                    className="mt-3 block font-display text-2xl text-bone transition-colors duration-300 hover:text-brand"
+                    className="mt-3 block font-display text-2xl font-bold text-ink transition-colors duration-300 hover:text-brand-deep"
                   >
                     {company.email}
                   </a>
                 </Detail>
 
                 <Detail label="Working Hours">
-                  <p className="mt-3 text-lg text-bone">{company.hours}</p>
-                  <p className="mt-1 text-sm text-bone-dim">Closed Sundays</p>
+                  <p className="mt-3 text-lg text-ink">{company.hours}</p>
+                  <p className="mt-1 text-sm text-ink-dim">Closed Sundays</p>
                 </Detail>
               </address>
             </div>
 
             {/* Map placeholder — drop in an embed once the client provides one */}
-            <div className="mt-8 flex aspect-[16/10] items-center justify-center border border-line bg-surface">
+            <div className="card brand-glow mt-8 flex aspect-[16/10] items-center justify-center overflow-hidden bg-paper-soft">
               <div className="text-center">
-                <DeltaMark className="mx-auto h-8 w-auto text-brand" />
-                <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-bone-dim">
-                  The Metropolis Tower · Business Bay
+                <img src={logoImage} alt="Dynamic Delta" className="mx-auto h-12 w-auto object-contain" />
+                <p className="mt-4 text-xs font-bold uppercase tracking-wide text-ink-dim">
+                  {company.address}
                 </p>
               </div>
             </div>

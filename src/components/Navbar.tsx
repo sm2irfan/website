@@ -38,46 +38,48 @@ function Navbar() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled && !menuOpen
-            ? 'border-b border-line bg-ink/85 backdrop-blur-md'
+            ? 'border-b border-line bg-paper/90 shadow-sm backdrop-blur-md'
             : 'border-b border-transparent'
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-10">
           <Logo />
 
-          <nav className="hidden items-center gap-10 lg:flex">
+          <nav className="hidden items-center gap-2 rounded-full border border-line bg-surface/80 p-1.5 shadow-sm backdrop-blur-sm lg:flex">
             {nav.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
                 end={link.to === '/'}
                 className={({ isActive }) =>
-                  `relative font-mono text-[11px] uppercase tracking-[0.22em] transition-colors duration-300 ${
-                    isActive ? 'text-brand' : 'text-bone-dim hover:text-bone'
+                  `rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 ${
+                    isActive ? 'brand-gradient text-ink shadow' : 'text-ink-dim hover:text-ink'
                   }`
                 }
               >
-                {({ isActive }) => (
-                  <>
-                    {link.label}
-                    <span
-                      className={`absolute -bottom-1.5 left-0 h-px bg-brand transition-all duration-400 ${
-                        isActive ? 'w-full' : 'w-0'
-                      }`}
-                    />
-                  </>
-                )}
+                {link.label}
               </NavLink>
             ))}
           </nav>
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4">
             <a
               href={telHref(company.phones[0])}
-              className="hidden font-mono text-[11px] tracking-[0.15em] text-bone-dim transition-colors hover:text-brand xl:block"
+              className={`hidden text-sm font-semibold transition-colors xl:block ${
+                scrolled
+                  ? 'text-ink-dim hover:text-brand-deep'
+                  : 'text-paper drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)] hover:text-brand-lit'
+              }`}
             >
               {company.phones[0]}
             </a>
+
+            <Link
+              to="/contact"
+              className="brand-gradient hidden rounded-full px-5 py-2.5 text-sm font-bold text-ink shadow-[0_10px_25px_-10px_rgba(200,164,77,0.6)] transition-transform duration-300 hover:-translate-y-0.5 md:block"
+            >
+              Get a Quote
+            </Link>
 
             {/* Two bars that cross into an X while the overlay is open */}
             <button
@@ -85,16 +87,16 @@ function Navbar() {
               onClick={() => setMenuOpen((v) => !v)}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
-              className="group relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-2"
+              className="group relative z-50 flex h-11 w-11 flex-col items-center justify-center gap-2 rounded-full border border-line bg-surface shadow-sm"
             >
               <span
-                className={`h-px w-7 bg-bone transition-all duration-400 ${
-                  menuOpen ? 'translate-y-[4.5px] rotate-45' : 'group-hover:w-5'
+                className={`h-0.5 w-5 rounded-full bg-ink transition-all duration-400 ${
+                  menuOpen ? 'translate-y-[3.5px] rotate-45' : 'group-hover:w-4'
                 }`}
               />
               <span
-                className={`h-px w-7 bg-bone transition-all duration-400 ${
-                  menuOpen ? '-translate-y-[4.5px] -rotate-45' : ''
+                className={`h-0.5 w-5 rounded-full bg-ink transition-all duration-400 ${
+                  menuOpen ? '-translate-y-[3.5px] -rotate-45' : ''
                 }`}
               />
             </button>
@@ -109,13 +111,13 @@ function Navbar() {
       >
         {/* Left door. Overlaps the seam by a pixel so no hairline shows between halves. */}
         <div
-          className={`absolute inset-y-0 left-0 w-[calc(50%+1px)] bg-ink transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          className={`absolute inset-y-0 left-0 w-[calc(50%+1px)] bg-paper transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
             menuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
         />
         {/* Right door */}
         <div
-          className={`absolute inset-y-0 right-0 w-[calc(50%+1px)] bg-ink transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          className={`absolute inset-y-0 right-0 w-[calc(50%+1px)] bg-paper transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
             menuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         />
@@ -137,8 +139,8 @@ function Navbar() {
                       transitionDelay: `${menuOpen ? DOORS_CLOSED + i * 130 : 0}ms`,
                     }}
                   >
-                    <span className="font-mono text-[11px] text-brand">{pad(i + 1)}</span>
-                    <span className="display text-4xl text-bone transition-colors duration-300 group-hover:text-brand md:text-6xl">
+                    <span className="text-sm font-bold text-brand-deep">{pad(i + 1)}</span>
+                    <span className="display text-4xl text-ink transition-colors duration-300 group-hover:text-brand-deep md:text-6xl">
                       {link.label}
                     </span>
                   </Link>
@@ -152,13 +154,13 @@ function Navbar() {
             {[
               <>
                 <p className="eyebrow">Studio</p>
-                <p className="mt-4 max-w-xs leading-relaxed text-bone-dim">{company.address}</p>
+                <p className="mt-4 max-w-xs leading-relaxed text-ink-dim">{company.address}</p>
               </>,
               <>
                 <p className="eyebrow">Enquiries</p>
                 <a
                   href={mailHref(company.email)}
-                  className="mt-4 block font-display text-2xl text-bone transition-colors hover:text-brand"
+                  className="mt-4 block font-display text-2xl font-bold text-ink transition-colors hover:text-brand-deep"
                 >
                   {company.email}
                 </a>
@@ -166,7 +168,7 @@ function Navbar() {
                   <a
                     key={phone}
                     href={telHref(phone)}
-                    className="mt-1 block font-mono text-sm text-bone-dim transition-colors hover:text-brand"
+                    className="mt-1 block text-sm font-medium text-ink-dim transition-colors hover:text-brand-deep"
                   >
                     {phone}
                   </a>

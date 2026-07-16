@@ -12,7 +12,7 @@ function Layout() {
   }, [pathname])
 
   return (
-    <div className="flex min-h-screen flex-col bg-ink">
+    <div className="flex min-h-screen flex-col bg-paper">
       <Navbar />
       <main className="flex-1">
         <Outlet />

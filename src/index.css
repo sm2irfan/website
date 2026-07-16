@@ -2,34 +2,34 @@
 
 /* ------------------------------------------------------------------
    Dynamic Delta Group — design tokens
-   Palette: black & gold luxury — near-black base, brushed-brass accent
-   Type:    Bodoni Moda (display) · Inter (UI) · JetBrains Mono (labels)
+   Palette: bold modern corporate — warm paper base, brass-gold accent,
+            deep red for gradient punch.
+   Type:    Sora (display, bold geometric) · Inter (UI) · JetBrains Mono (tags)
 ------------------------------------------------------------------- */
 @theme {
-  --color-ink: #0a0a0a;
-  --color-ink-soft: #121110;
+  --color-paper: #faf8f3;
+  --color-paper-soft: #f1ead9;
 
-  /* Raised surfaces (card hover, panels) — warmed toward brown-black
-     so they sit with the gold accent instead of reading as flat grey. */
-  --color-surface: #16130f;
-  --color-surface-soft: #201c15;
+  --color-surface: #ffffff;
+  --color-surface-soft: #fdfbf6;
 
-  --color-bone: #f3ede0;
-  --color-bone-dim: #a89f8f;
+  --color-ink: #17140f;
+  --color-ink-dim: #6c6353;
 
-  /* Brushed-brass gold, the primary luxury accent. The logo's true red
-     (#a62619) is kept only for the mark itself (favicon), not the UI. */
+  /* Brushed-brass gold, the primary accent. Deep red powers gradients
+     and hover states so the palette still reads as "brand", not generic. */
   --color-brand: #c8a44d;
   --color-brand-lit: #e6c777;
   --color-brand-deep: #a62619;
 
-  --color-line: rgba(243, 237, 224, 0.12);
+  --color-line: #e9e1cd;
 
-  --font-display: "Bodoni Moda", ui-serif, Georgia, serif;
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-brand: 0 20px 45px -15px rgba(200, 164, 77, 0.45);
 }
 
 @layer base {
@@ -38,10 +38,10 @@
   }
 
   body {
-    background-color: var(--color-ink);
-    color: var(--color-bone);
+    background-color: var(--color-paper);
+    color: var(--color-ink);
     font-family: var(--font-sans);
-    font-weight: 300;
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -50,15 +50,15 @@
     color: var(--color-ink);
   }
 
-  /* Slim scrollbar that turns brand red on hover */
   ::-webkit-scrollbar {
     width: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--color-ink);
+    background: var(--color-paper);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--color-surface-soft);
+    background: var(--color-line);
+    border-radius: 999px;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: var(--color-brand);
@@ -66,33 +66,66 @@
 }
 
 @layer components {
-  /* Small uppercase technical label used above every section title */
+  /* Small rounded pill label used above every section title */
   .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     font-family: var(--font-mono);
     font-size: 0.6875rem;
-    letter-spacing: 0.28em;
+    font-weight: 600;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--color-brand);
+    color: var(--color-brand-deep);
+    background: color-mix(in srgb, var(--color-brand) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-brand) 30%, transparent);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
   }
 
-  /* Editorial display heading — light weight, tight leading, large */
+  /* Bold geometric display heading */
   .display {
     font-family: var(--font-display);
-    font-weight: 400;
-    line-height: 1.02;
-    letter-spacing: -0.015em;
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
   }
 
-  /* Thin hairline divider matching the grid system */
   .hairline {
     height: 1px;
     background: var(--color-line);
+  }
+
+  /* Gold → deep-red diagonal gradient used on primary CTAs and accents */
+  .brand-gradient {
+    background: linear-gradient(135deg, var(--color-brand-lit), var(--color-brand) 55%, var(--color-brand-deep));
+  }
+
+  /* Soft radial gold glow, dropped behind hero/CTA blocks for depth */
+  .brand-glow {
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--color-brand) 35%, transparent), transparent);
+  }
+
+  /* Elevated white card, the base surface for the bold-corporate look */
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: 1.5rem;
+    box-shadow: 0 1px 2px rgba(23, 20, 15, 0.04);
+    transition:
+      transform 0.4s var(--ease-out-expo),
+      box-shadow 0.4s var(--ease-out-expo),
+      border-color 0.4s var(--ease-out-expo);
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--color-brand) 45%, transparent);
+    box-shadow: 0 24px 50px -20px rgba(23, 20, 15, 0.18);
   }
 }
 
 /* ---------------------------- motion ---------------------------- */
 
-/* Scroll reveal: elements start shifted + transparent, .is-visible settles them */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -106,7 +139,6 @@
   transform: none;
 }
 
-/* Masked line-by-line rise, used for hero headlines */
 .rise {
   display: block;
   overflow: hidden;
@@ -126,9 +158,6 @@
 /* ------------------- hero image zoom (in → out, forever) -------------------
    On load the image zooms IN to --zoom-scale, then back OUT to --zoom-from,
    and repeats. --zoom-duration is one FULL in-and-out cycle, in seconds.
-
-   Override per image with an inline style, e.g.
-     <img className="ken-burns" style={{ '--zoom-duration': '18s' }} />
 --------------------------------------------------------------------------- */
 :root {
   --zoom-duration: 240s;
@@ -141,7 +170,7 @@
     transform: scale(var(--zoom-from));
   }
   50% {
-    transform: scale(var(--zoom-scale)); /* fully zoomed in at the midpoint */
+    transform: scale(var(--zoom-scale));
   }
   100% {
     transform: scale(var(--zoom-from));
@@ -165,6 +194,20 @@
   animation: marquee 40s linear infinite;
 }
 
+/* Slow drifting gradient blob, used behind hero/CTA panels */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(4%, -4%) scale(1.08);
+  }
+}
+.drift {
+  animation: drift 18s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -172,7 +215,8 @@
   .reveal,
   .rise > span,
   .ken-burns,
-  .marquee-track {
+  .marquee-track,
+  .drift {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;

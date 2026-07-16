@@ -45,7 +45,7 @@ function About() {
       <Section>
         <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr] lg:gap-24">
           <Reveal>
-            <div className="relative aspect-[3/4] overflow-hidden border border-line">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-3xl shadow-2xl">
               <img
                 src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1200&q=80"
                 alt="Dynamic Delta leadership"
@@ -53,10 +53,8 @@ function About() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/80 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-8">
-                <p className="display text-xl">{company.chairman}</p>
-                <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-brand">
-                  Chairman
-                </p>
+                <p className="display text-xl text-paper">{company.chairman}</p>
+                <p className="mt-1 text-sm font-bold text-brand-lit">Chairman</p>
               </div>
             </div>
           </Reveal>
@@ -64,15 +62,15 @@ function About() {
           <Reveal delay={120} className="flex flex-col justify-center">
             <Eyebrow>The Promise</Eyebrow>
             <blockquote className="display mt-8 text-3xl leading-tight md:text-5xl">
-              &ldquo;Quality you deserve, <span className="text-brand italic">and</span>{' '}
+              &ldquo;Quality you deserve, <span className="text-brand-deep italic">and</span>{' '}
               dependability you can count on.&rdquo;
             </blockquote>
-            <p className="mt-8 leading-relaxed text-bone-dim">
+            <p className="mt-8 leading-relaxed text-ink-dim">
               That sentence has governed every contract we have signed since {company.founded}. It
               is not a marketing line — it is the standard our engineers are held to on site, and
               the reason our clients hand us their next project before the current one closes.
             </p>
-            <p className="mt-6 leading-relaxed text-bone-dim">
+            <p className="mt-6 leading-relaxed text-ink-dim">
               We build in-house capability rather than subcontract accountability. Mechanical,
               electrical, plumbing, automation, interiors, facilities and landscaping all sit under
               one roof, one programme and one point of responsibility.
@@ -81,10 +79,10 @@ function About() {
         </div>
       </Section>
 
-      <Section className="border-t border-line bg-ink-soft">
-        <div className="grid grid-cols-2 gap-12 md:grid-cols-4">
+      <Section className="bg-paper-soft">
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
           {stats.map((stat, i) => (
-            <Reveal key={stat.label} delay={i * 100}>
+            <Reveal key={stat.label} delay={i * 100} className="card p-8">
               <Stat {...stat} />
             </Reveal>
           ))}
@@ -92,42 +90,37 @@ function About() {
       </Section>
 
       {/* Timeline */}
-      <Section className="border-t border-line">
+      <Section>
         <Reveal>
           <SectionHeading eyebrow="Our Trajectory">
-            How the group <span className="text-brand italic">grew</span>
+            How the group <span className="text-brand-deep italic">grew</span>
           </SectionHeading>
         </Reveal>
 
-        <div className="mt-20">
+        <div className="mt-20 space-y-4">
           {timeline.map((entry, i) => (
             <Reveal key={entry.year} delay={i * 80}>
-              <Row className="py-10 md:grid-cols-[160px_1fr_2fr] md:gap-10">
-                <span className="display text-3xl text-brand md:text-4xl">{entry.year}</span>
+              <Row className="md:grid-cols-[160px_1fr_2fr] md:gap-10">
+                <span className="display text-3xl text-brand-deep md:text-4xl">{entry.year}</span>
                 <h3 className="display text-2xl">{entry.title}</h3>
-                <p className="leading-relaxed text-bone-dim">{entry.body}</p>
+                <p className="leading-relaxed text-ink-dim">{entry.body}</p>
               </Row>
             </Reveal>
           ))}
-          <div className="hairline" />
         </div>
       </Section>
 
       {/* Values */}
-      <Section className="border-t border-line bg-ink-soft">
+      <Section className="bg-paper-soft">
         <Reveal>
           <SectionHeading eyebrow="Our Values">
-            What we will <span className="text-brand italic">not</span> compromise
+            What we will <span className="text-brand-deep italic">not</span> compromise
           </SectionHeading>
         </Reveal>
 
-        <div className="mt-16 grid gap-px bg-line md:grid-cols-2">
+        <div className="mt-16 grid gap-6 md:grid-cols-2">
           {values.map((value, i) => (
-            <Reveal
-              key={value.title}
-              delay={i * 90}
-              className="bg-ink-soft p-8 transition-colors duration-500 hover:bg-surface md:p-10"
-            >
+            <Reveal key={value.title} delay={i * 90} className="card p-8 md:p-10">
               <NumberedCard index={i + 1} {...value} />
             </Reveal>
           ))}

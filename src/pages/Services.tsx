@@ -45,7 +45,7 @@ function Services() {
                 className="grid scroll-mt-32 items-center gap-12 lg:grid-cols-2 lg:gap-20"
               >
                 <Reveal className={flipped ? 'lg:order-2' : ''}>
-                  <div className="group relative aspect-[4/3] overflow-hidden border border-line">
+                  <div className="group relative aspect-[4/3] overflow-hidden rounded-3xl shadow-2xl">
                     <img
                       src={service.image}
                       alt={service.title}
@@ -53,7 +53,7 @@ function Services() {
                       className="h-full w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
-                    <span className="display absolute top-6 left-6 text-6xl text-bone/25">
+                    <span className="brand-gradient display absolute top-6 left-6 flex h-16 w-16 items-center justify-center rounded-2xl text-2xl text-ink shadow-lg">
                       {service.index}
                     </span>
                   </div>
@@ -62,7 +62,7 @@ function Services() {
                 <Reveal delay={120} className={flipped ? 'lg:order-1' : ''}>
                   <Eyebrow>Division {service.index}</Eyebrow>
                   <h2 className="display mt-6 text-4xl md:text-5xl">{service.title}</h2>
-                  <p className="mt-6 text-lg leading-relaxed text-bone-dim">{service.summary}</p>
+                  <p className="mt-6 text-lg leading-relaxed text-ink-dim">{service.summary}</p>
                   <PointList points={service.points} />
                 </Reveal>
               </div>
@@ -72,25 +72,21 @@ function Services() {
       </Section>
 
       {/* Delivery process */}
-      <Section className="border-t border-line bg-ink-soft">
+      <Section className="bg-paper-soft">
         <Reveal>
           <SectionHeading eyebrow="How We Deliver">
-            From survey <span className="text-brand italic">to</span> handover
+            From survey <span className="text-brand-deep italic">to</span> handover
           </SectionHeading>
         </Reveal>
 
-        <div className="mt-20 grid gap-px bg-line md:grid-cols-4">
+        <div className="mt-20 grid gap-6 md:grid-cols-4">
           {process.map((phase, i) => (
-            <Reveal
-              key={phase.title}
-              delay={i * 100}
-              className="group bg-ink-soft p-8 transition-colors duration-500 hover:bg-surface md:p-10"
-            >
-              <span className="display text-5xl text-bone/15 transition-colors duration-500 group-hover:text-brand/40">
+            <Reveal key={phase.title} delay={i * 100} className="card group p-8">
+              <span className="display text-5xl text-line transition-colors duration-500 group-hover:text-brand/50">
                 {pad(i + 1)}
               </span>
               <h3 className="display mt-8 text-2xl">{phase.title}</h3>
-              <p className="mt-4 text-sm leading-relaxed text-bone-dim">{phase.body}</p>
+              <p className="mt-4 text-sm leading-relaxed text-ink-dim">{phase.body}</p>
             </Reveal>
           ))}
         </div>

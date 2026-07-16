@@ -46,15 +46,15 @@ function Careers() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <Reveal>
             <SectionHeading eyebrow="Open Positions">
-              Currently <span className="text-brand italic">hiring</span>
+              Currently <span className="text-brand-deep italic">hiring</span>
             </SectionHeading>
           </Reveal>
           <Reveal delay={120}>
-            <p className="max-w-sm text-sm leading-relaxed text-bone-dim">
+            <p className="max-w-sm text-sm leading-relaxed text-ink-dim">
               Don&rsquo;t see your discipline? Send your CV to{' '}
               <a
                 href={mailHref(company.email)}
-                className="text-brand transition-colors hover:text-brand-lit"
+                className="font-semibold text-brand-deep transition-colors hover:text-brand"
               >
                 {company.email}
               </a>{' '}
@@ -63,27 +63,22 @@ function Careers() {
           </Reveal>
         </div>
 
-        <div className="mt-16">
+        <div className="mt-16 space-y-4">
           {openings.map((job, i) => (
             <Reveal key={job.role} delay={i * 70}>
-              <a
-                href={mailHref(company.email, `Application — ${job.role}`)}
-                className="block"
-              >
+              <a href={mailHref(company.email, `Application — ${job.role}`)} className="block">
                 <Row className="items-center md:grid-cols-[2fr_1fr_1fr_auto]">
-                  <h3 className="display text-2xl transition-colors duration-300 group-hover:text-brand md:text-3xl">
+                  <h3 className="display text-2xl transition-colors duration-300 group-hover:text-brand-deep md:text-3xl">
                     {job.role}
                   </h3>
-                  <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-brand">
-                    {job.division}
-                  </p>
-                  <p className="text-sm text-bone-dim">{job.location}</p>
+                  <p className="text-sm font-bold text-brand-deep">{job.division}</p>
+                  <p className="text-sm text-ink-dim">{job.location}</p>
 
                   <div className="flex items-center gap-6">
-                    <span className="border border-line px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-bone-dim">
+                    <span className="rounded-full border border-line px-4 py-2 text-xs font-semibold text-ink-dim">
                       {job.type}
                     </span>
-                    <span className="font-mono text-lg text-brand transition-transform duration-500 group-hover:translate-x-1">
+                    <span className="text-lg text-brand-deep transition-transform duration-500 group-hover:translate-x-1">
                       &#8594;
                     </span>
                   </div>
@@ -91,25 +86,20 @@ function Careers() {
               </a>
             </Reveal>
           ))}
-          <div className="hairline" />
         </div>
       </Section>
 
       {/* Why work here */}
-      <Section className="border-t border-line bg-ink-soft">
+      <Section className="bg-paper-soft">
         <Reveal>
           <SectionHeading eyebrow="Life at Dynamic Delta">
-            We look after <span className="text-brand italic">our own</span>
+            We look after <span className="text-brand-deep italic">our own</span>
           </SectionHeading>
         </Reveal>
 
-        <div className="mt-16 grid gap-px bg-line md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {benefits.map((benefit, i) => (
-            <Reveal
-              key={benefit.title}
-              delay={i * 90}
-              className="bg-ink-soft p-8 transition-colors duration-500 hover:bg-surface md:p-10"
-            >
+            <Reveal key={benefit.title} delay={i * 90} className="card p-8">
               <NumberedCard index={i + 1} {...benefit} />
             </Reveal>
           ))}

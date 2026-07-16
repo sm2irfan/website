@@ -23,8 +23,8 @@ export function Section({
 
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <p className="eyebrow flex items-center gap-3">
-      <span className="inline-block h-px w-8 bg-brand" />
+    <p className="eyebrow">
+      <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand-deep" />
       {children}
     </p>
   )
@@ -52,32 +52,14 @@ export function SectionHeading({
 
 type Variant = 'solid' | 'ghost'
 
-const SWEEP_BASE =
-  'group relative inline-flex items-center gap-3 overflow-hidden border font-mono text-[11px] uppercase tracking-[0.22em] transition-colors duration-500'
+const BASE =
+  'group relative inline-flex items-center gap-3 rounded-full font-semibold text-sm transition-all duration-400 ease-[var(--ease-out-expo)]'
 
 const VARIANTS: Record<Variant, string> = {
-  solid: 'border-brand text-brand hover:text-ink',
-  ghost: 'border-line text-bone hover:border-bone hover:text-ink',
-}
-
-const FILLS: Record<Variant, string> = {
-  solid: 'bg-brand',
-  ghost: 'bg-bone',
-}
-
-/** Brand fill sweeping up from the bottom edge — the site's one CTA motif. */
-function SweepBody({ variant, children }: { variant: Variant; children: ReactNode }) {
-  return (
-    <>
-      <span
-        className={`absolute inset-0 origin-bottom scale-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-y-100 ${FILLS[variant]}`}
-      />
-      <span className="relative z-10">{children}</span>
-      <span className="relative z-10 transition-transform duration-500 group-hover:translate-x-1">
-        &#8594;
-      </span>
-    </>
-  )
+  solid:
+    'brand-gradient text-ink shadow-[0_16px_35px_-12px_rgba(200,164,77,0.55)] hover:shadow-[0_20px_45px_-12px_rgba(166,38,25,0.5)] hover:-translate-y-0.5',
+  ghost:
+    'border-2 border-ink/10 bg-surface text-ink hover:border-brand hover:-translate-y-0.5 hover:shadow-lg',
 }
 
 type ButtonProps = {
@@ -98,8 +80,13 @@ export function Button({
   padding = 'px-8 py-4',
   className = '',
 }: ButtonProps) {
-  const classes = `${SWEEP_BASE} ${VARIANTS[variant]} ${padding} ${className}`
-  const body = <SweepBody variant={variant}>{children}</SweepBody>
+  const classes = `${BASE} ${VARIANTS[variant]} ${padding} ${className}`
+  const body = (
+    <>
+      <span>{children}</span>
+      <span className="transition-transform duration-400 group-hover:translate-x-1">&#8594;</span>
+    </>
+  )
 
   return to ? (
     <Link to={to} className={classes}>
@@ -149,9 +136,9 @@ export function Counter({ value, suffix = '' }: { value: number; suffix?: string
   }, [value])
 
   return (
-    <span ref={ref} className="display text-5xl text-bone md:text-6xl">
+    <span ref={ref} className="display text-5xl text-ink md:text-6xl">
       {display}
-      <span className="text-brand">{suffix}</span>
+      <span className="text-brand-deep">{suffix}</span>
     </span>
   )
 }
@@ -161,7 +148,7 @@ export function Stat({ value, suffix, label }: { value: number; suffix?: string;
   return (
     <>
       <Counter value={value} suffix={suffix} />
-      <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.2em] text-bone-dim">{label}</p>
+      <p className="mt-3 text-sm font-medium text-ink-dim">{label}</p>
     </>
   )
 }
@@ -173,13 +160,11 @@ export function Marquee({ items }: { items: string[] }) {
   const row = [...items, ...items]
 
   return (
-    <div className="relative flex overflow-hidden border-y border-line bg-ink-soft py-6">
+    <div className="relative flex overflow-hidden border-y border-line bg-ink py-6">
       <div className="marquee-track flex shrink-0 items-center gap-12 pr-12">
         {row.map((item, i) => (
           <div key={i} className="flex shrink-0 items-center gap-12">
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-bone-dim">
-              {item}
-            </span>
+            <span className="text-sm font-semibold tracking-wide text-paper/80">{item}</span>
             <span className="text-brand">&#9670;</span>
           </div>
         ))}
@@ -209,15 +194,16 @@ export function PageHero({
     <header className="relative flex min-h-[60vh] items-end overflow-hidden pt-32">
       <div className="absolute inset-0">
         <img src={image} alt="" className="ken-burns h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/75 to-ink/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/60 via-transparent to-transparent" />
       </div>
 
       <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 md:px-10">
-        <Eyebrow>{eyebrow}</Eyebrow>
-        <h1 className="rise display mt-6 text-5xl md:text-7xl">
+        <span className="eyebrow bg-paper/15 text-brand-lit ring-1 ring-paper/25">{eyebrow}</span>
+        <h1 className="rise display mt-6 text-5xl text-paper md:text-7xl">
           <span>{title}</span>
         </h1>
-        <p className="mt-6 max-w-xl text-lg leading-relaxed text-bone-dim">{lead}</p>
+        <p className="mt-6 max-w-xl text-lg leading-relaxed text-paper/75">{lead}</p>
       </div>
     </header>
   )

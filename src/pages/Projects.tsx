@@ -24,22 +24,22 @@ function Projects() {
       />
 
       <Section>
-        <Reveal className="flex flex-wrap items-center gap-3 border-b border-line pb-8">
+        <Reveal className="flex flex-wrap items-center gap-3">
           {sectors.map((sector) => (
             <button
               key={sector}
               type="button"
               onClick={() => setFilter(sector)}
-              className={`border px-6 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-all duration-400 ${
+              className={`rounded-full border px-6 py-3 text-sm font-semibold transition-all duration-300 ${
                 filter === sector
-                  ? 'border-brand bg-brand text-ink'
-                  : 'border-line text-bone-dim hover:border-bone hover:text-bone'
+                  ? 'brand-gradient border-transparent text-ink shadow-md'
+                  : 'border-line text-ink-dim hover:border-brand hover:text-ink'
               }`}
             >
               {sector}
             </button>
           ))}
-          <span className="ml-auto font-mono text-[11px] tracking-[0.2em] text-bone-dim">
+          <span className="ml-auto text-sm font-semibold text-ink-dim">
             {pad(visible.length)} Projects
           </span>
         </Reveal>
@@ -61,11 +61,11 @@ function Projects() {
         </div>
       </Section>
 
-      <Section className="border-t border-line bg-ink-soft text-center">
+      <Section className="bg-paper-soft text-center">
         <Reveal>
           <p className="eyebrow justify-center">What&rsquo;s Next</p>
           <h2 className="display mx-auto mt-8 max-w-3xl text-4xl md:text-6xl">
-            Your project belongs <span className="text-brand italic">on this page.</span>
+            Your project belongs <span className="text-brand-deep italic">on this page.</span>
           </h2>
           <div className="mt-12 flex justify-center">
             <Button to="/contact">Start the Conversation</Button>
