@@ -128,10 +128,11 @@ If you are developing a production application, we recommend enabling type-aware
 
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
 
+deployment instructions for the newdesign subfolder
+https://sm2irfan.github.io/website/newdesign/.
 
+to dyploy in above link flollow the bellow command
 
+npm run build:newdesign
 
-cd "c:/Users/Azam/Desktop/Dynamic/website" && npm run deploy:newdesign 2>&1
-
-cd "c:/Users/Azam/Desktop/Dynamic/website" && npx gh-pages -d dist --dest newdesign --add -m "Deploy newdesign preview" 2>&1
-
+npm run deploy:newdesign
