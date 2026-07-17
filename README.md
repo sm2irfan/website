@@ -26,6 +26,16 @@ npm run deploy
 
 This runs `predeploy` (`npm run build`) automatically, then pushes the contents of `dist` to the `gh-pages` branch.
 
+### Deploying to https://sm2irfan.github.io/website/newdesign/
+
+Same idea as `deploy`, but builds with the right base path and publishes into a `newdesign` subfolder instead of the branch root, so it doesn't touch production:
+
+```
+npm run deploy:newdesign
+```
+
+This runs `predeploy:newdesign` (`npm run build:newdesign`, which builds with `--base=/website/newdesign/`) automatically, then publishes `dist` into the `newdesign/` folder of the `gh-pages` branch — production at the root is untouched.
+
 ### Preview deployments (from any branch)
 
 To let someone preview a branch's changes without touching the live production site, publish that build to a `preview` subfolder instead of the branch root.
@@ -117,3 +127,11 @@ If you are developing a production application, we recommend enabling type-aware
 ```
 
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+
+
+
+
+cd "c:/Users/Azam/Desktop/Dynamic/website" && npm run deploy:newdesign 2>&1
+
+cd "c:/Users/Azam/Desktop/Dynamic/website" && npx gh-pages -d dist --dest newdesign --add -m "Deploy newdesign preview" 2>&1
+
