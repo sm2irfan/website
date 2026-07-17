@@ -6,11 +6,12 @@
     <!--
       GitHub Pages serves this single file for ANY unmatched path across the
       whole site — it does not support per-folder 404 pages. This repo
-      publishes two client-side-routed SPAs from the same Pages site:
-      production at /website/ and a preview build at /website/preview/. A
-      hard reload or shared link to a deep route (e.g. /website/about or
-      /website/preview/about) has no matching physical file, so it lands
-      here instead of loading the app's own index.html.
+      publishes several client-side-routed SPAs from the same Pages site:
+      production at /website/, plus branch/preview builds at subfolders
+      like /website/preview/ and /website/newdesign/ (see SUBFOLDER_APPS
+      below). A hard reload or shared link to a deep route (e.g.
+      /website/about or /website/preview/about) has no matching physical
+      file, so it lands here instead of loading the app's own index.html.
 
       Rather than redirecting (which would change the URL and require every
       deployed index.html to cooperate in restoring it), this fetches the
@@ -21,9 +22,15 @@
       immediately, with no coordination needed from index.html itself.
     -->
     <script>
+      // Every subfolder that hosts its own build of the app, besides the
+      // production root. Add a name here whenever a new branch/preview
+      // subfolder is deployed alongside production.
+      var SUBFOLDER_APPS = ['preview', 'newdesign']
+
       var l = window.location
       var segments = l.pathname.split('/').filter(Boolean) // e.g. ['website'] or ['website','preview','about']
-      var base = segments[1] === 'preview' ? '/website/preview/' : '/website/'
+      var base =
+        SUBFOLDER_APPS.indexOf(segments[1]) !== -1 ? '/website/' + segments[1] + '/' : '/website/'
 
       fetch(base + 'index.html')
         .then(function (r) {
