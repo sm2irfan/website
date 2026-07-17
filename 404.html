@@ -2,23 +2,46 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/website/logo.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Dynamic Delta Group — Electromechanical, automation and turnkey MEP contracting in Dubai, UAE. Established 2005."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <title>Dynamic Delta Group — Quality You Deserve</title>
-    <script type="module" crossorigin src="/website/assets/index-DoOv3ouo.js"></script>
-    <link rel="stylesheet" crossorigin href="/website/assets/index-aYl1ntI1.css">
+    <title>Dynamic Delta Group</title>
+    <!--
+      GitHub Pages serves this single file for ANY unmatched path across the
+      whole site — it does not support per-folder 404 pages. This repo
+      publishes several client-side-routed SPAs from the same Pages site:
+      production at /website/, plus branch/preview builds at subfolders
+      like /website/preview/ and /website/newdesign/ (see SUBFOLDER_APPS
+      below). A hard reload or shared link to a deep route (e.g.
+      /website/about or /website/preview/about) has no matching physical
+      file, so it lands here instead of loading the app's own index.html.
+
+      Rather than redirecting (which would change the URL and require every
+      deployed index.html to cooperate in restoring it), this fetches the
+      correct app's real index.html — chosen by path prefix — and swaps it
+      into the current document in place. The browser's address bar and
+      window.location never change, so whichever app loads reads the exact
+      URL the user requested and its router mounts on the right route
+      immediately, with no coordination needed from index.html itself.
+    -->
+    <script>
+      // Every subfolder that hosts its own build of the app, besides the
+      // production root. Add a name here whenever a new branch/preview
+      // subfolder is deployed alongside production.
+      var SUBFOLDER_APPS = ['preview', 'newdesign']
+
+      var l = window.location
+      var segments = l.pathname.split('/').filter(Boolean) // e.g. ['website'] or ['website','preview','about']
+      var base =
+        SUBFOLDER_APPS.indexOf(segments[1]) !== -1 ? '/website/' + segments[1] + '/' : '/website/'
+
+      fetch(base + 'index.html')
+        .then(function (r) {
+          return r.text()
+        })
+        .then(function (html) {
+          document.open()
+          document.write(html)
+          document.close()
+        })
+    </script>
   </head>
-  <body>
-    <div id="root"></div>
-  </body>
+  <body></body>
 </html>
