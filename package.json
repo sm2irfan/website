@@ -3,9 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://sm2irfan.github.io/website",
+  "homepage": "https://sm2irfan.github.io/website/newdesign",
   "scripts": {
     "dev": "vite",
+    "dev:newdesign": "vite --base=/website/newdesign/",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
@@ -27,6 +28,6 @@
     "oxlint": "^1.71.0",
     "tailwindcss": "^4.3.2",
     "typescript": "~6.0.2",
-    "vite": "^8.1.1"
+    "vite": "^8.1.5"
   }
 }

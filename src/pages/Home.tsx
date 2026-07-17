@@ -109,7 +109,7 @@ function Intro() {
 
       <div className="mt-24 grid grid-cols-2 gap-6 md:grid-cols-4">
         {stats.map((stat, i) => (
-          <Reveal key={stat.label} delay={i * 100} className="card p-8 md:p-10">
+          <Reveal key={stat.label} delay={i * 100} className="card p-5 sm:p-8 md:p-10">
             <Stat {...stat} />
           </Reveal>
         ))}

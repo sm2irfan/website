@@ -136,7 +136,7 @@ export function Counter({ value, suffix = '' }: { value: number; suffix?: string
   }, [value])
 
   return (
-    <span ref={ref} className="display text-5xl text-ink md:text-6xl">
+    <span ref={ref} className="display text-3xl text-ink sm:text-4xl md:text-6xl">
       {display}
       <span className="text-brand-deep">{suffix}</span>
     </span>

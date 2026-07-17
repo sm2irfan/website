@@ -82,7 +82,7 @@ function About() {
       <Section className="bg-paper-soft">
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
           {stats.map((stat, i) => (
-            <Reveal key={stat.label} delay={i * 100} className="card p-8">
+            <Reveal key={stat.label} delay={i * 100} className="card p-5 sm:p-8">
               <Stat {...stat} />
             </Reveal>
           ))}
