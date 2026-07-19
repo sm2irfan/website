@@ -17,6 +17,7 @@
     "deploy:newdesign": "gh-pages -d dist --dest newdesign --add"
   },
   "dependencies": {
+    "lenis": "^1.3.25",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-router-dom": "^7.18.1"

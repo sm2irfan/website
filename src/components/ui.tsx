@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { useParallax } from '../hooks/useParallax'
 
 /* ----------------------------- Section shell ---------------------------- */
 
@@ -190,10 +191,14 @@ export function PageHero({
   lead: string
   image: string
 }) {
+  const parallaxRef = useParallax<HTMLDivElement>(30)
+
   return (
     <header className="relative flex min-h-[60vh] items-end overflow-hidden pt-32">
       <div className="absolute inset-0">
-        <img src={image} alt="" className="ken-burns h-full w-full object-cover" />
+        <div ref={parallaxRef} className="absolute -inset-y-10 inset-x-0">
+          <img src={image} alt="" className="ken-burns h-full w-full object-cover" />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/75 to-ink/50" />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/60 via-transparent to-transparent" />
       </div>

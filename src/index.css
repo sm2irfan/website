@@ -131,10 +131,10 @@
 
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(28px) scale(0.97);
   transition:
-    opacity 1s var(--ease-out-expo),
-    transform 1s var(--ease-out-expo);
+    opacity 1.1s var(--ease-out-expo),
+    transform 1.1s var(--ease-out-expo);
   transition-delay: var(--reveal-delay, 0ms);
 }
 .reveal.is-visible {

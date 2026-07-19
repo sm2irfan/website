@@ -5,6 +5,7 @@ import { Button, Marquee, Section, SectionHeading, Stat } from '../components/ui
 import { NumberedCard, ProjectMedia, ProjectMeta } from '../components/cards'
 import { capabilities, company, projects, services, stats, values } from '../data/site'
 import { cssVars } from '../lib/utils'
+import { useParallax } from '../hooks/useParallax'
 
 /* -------------------------------- Hero --------------------------------- */
 
@@ -22,14 +23,18 @@ const HERO_LINES = [
 ]
 
 function Hero() {
+  const parallaxRef = useParallax<HTMLDivElement>(40)
+
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden">
       <div className="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2400&q=80"
-          alt=""
-          className="ken-burns h-full w-full object-cover"
-        />
+        <div ref={parallaxRef} className="absolute -inset-y-12 inset-x-0">
+          <img
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2400&q=80"
+            alt=""
+            className="ken-burns h-full w-full object-cover"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/50" />
       </div>

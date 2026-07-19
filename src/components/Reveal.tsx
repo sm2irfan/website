@@ -27,7 +27,12 @@ function Reveal({ children, delay = 0, className = '', as: Tag = 'div' }: Reveal
           entry.target.classList.remove('is-visible')
         }
       },
-      { threshold: 0.15, rootMargin: '0px 0px -60px 0px' },
+      // Positive bottom margin so content already near the fold on initial
+      // load (e.g. right below a tall hero, like the About page) counts as
+      // "in view" immediately instead of rendering blank until the user
+      // scrolls. Content further down the page still reveals/hides on the
+      // normal scroll cycle once it's this close to entering the viewport.
+      { threshold: 0.15, rootMargin: '0px 0px 200px 0px' },
     )
 
     observer.observe(el)
