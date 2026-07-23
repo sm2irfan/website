@@ -19,7 +19,7 @@ const HERO_LINES = [
       </>
     ),
   },
-  { delay: 590, content: <>for the Emirates.</> },
+  { delay: 590, content: <>for the Emirts.</> },
 ]
 
 function Hero() {
@@ -114,7 +114,12 @@ function Intro() {
 
       <div className="mt-24 grid grid-cols-2 gap-6 md:grid-cols-4">
         {stats.map((stat, i) => (
-          <Reveal key={stat.label} delay={i * 100} className="card p-5 sm:p-8 md:p-10">
+          <Reveal
+            key={stat.label}
+            delay={i * 100}
+            direction={i % 2 === 0 ? 'left' : 'right'}
+            className="card p-5 sm:p-8 md:p-10"
+          >
             <Stat {...stat} />
           </Reveal>
         ))}
@@ -241,6 +246,7 @@ function FeaturedProjects() {
           <Reveal
             key={project.id}
             delay={(i % 2) * 120}
+            direction={i % 2 === 0 ? 'left' : 'right'}
             className={i % 2 === 1 ? 'md:mt-24' : ''}
           >
             <Link to="/projects" className="group block">
@@ -276,7 +282,12 @@ function Values() {
 
         <div className="grid gap-6 sm:grid-cols-2">
           {values.map((value, i) => (
-            <Reveal key={value.title} delay={i * 90} className="card p-8 md:p-10">
+            <Reveal
+              key={value.title}
+              delay={i * 90}
+              direction={i % 2 === 0 ? 'left' : 'right'}
+              className="card p-8 md:p-10"
+            >
               <NumberedCard index={i + 1} {...value} />
             </Reveal>
           ))}

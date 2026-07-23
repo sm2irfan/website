@@ -99,7 +99,12 @@ function Careers() {
 
         <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {benefits.map((benefit, i) => (
-            <Reveal key={benefit.title} delay={i * 90} className="card p-8">
+            <Reveal
+              key={benefit.title}
+              delay={i * 90}
+              direction={i % 2 === 0 ? 'left' : 'right'}
+              className="card p-8"
+            >
               <NumberedCard index={i + 1} {...benefit} />
             </Reveal>
           ))}

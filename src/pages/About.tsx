@@ -82,7 +82,12 @@ function About() {
       <Section className="bg-paper-soft">
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
           {stats.map((stat, i) => (
-            <Reveal key={stat.label} delay={i * 100} className="card p-5 sm:p-8">
+            <Reveal
+              key={stat.label}
+              delay={i * 100}
+              direction={i % 2 === 0 ? 'left' : 'right'}
+              className="card p-5 sm:p-8"
+            >
               <Stat {...stat} />
             </Reveal>
           ))}
@@ -120,7 +125,12 @@ function About() {
 
         <div className="mt-16 grid gap-6 md:grid-cols-2">
           {values.map((value, i) => (
-            <Reveal key={value.title} delay={i * 90} className="card p-8 md:p-10">
+            <Reveal
+              key={value.title}
+              delay={i * 90}
+              direction={i % 2 === 0 ? 'left' : 'right'}
+              className="card p-8 md:p-10"
+            >
               <NumberedCard index={i + 1} {...value} />
             </Reveal>
           ))}

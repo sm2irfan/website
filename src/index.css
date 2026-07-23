@@ -131,15 +131,54 @@
 
 .reveal {
   opacity: 0;
-  transform: translateY(28px) scale(0.97);
+  transform: translateY(64px) scale(0.9);
+  filter: blur(14px);
   transition:
-    opacity 1.1s var(--ease-out-expo),
-    transform 1.1s var(--ease-out-expo);
+    opacity 0.9s var(--ease-out-expo),
+    transform 1.3s var(--ease-out-expo),
+    filter 1.5s var(--ease-out-expo);
   transition-delay: var(--reveal-delay, 0ms);
 }
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+  filter: blur(0);
+}
+
+/* Directional variants — set on <Reveal direction="left|right">, layered on
+   top of .reveal. Only the initial transform differs; .reveal.is-visible's
+   `transform: none` already wins back to settled for either direction. */
+.reveal-left {
+  transform: translate3d(-72px, 32px, 0) scale(0.92);
+}
+.reveal-right {
+  transform: translate3d(72px, 32px, 0) scale(0.92);
+}
+
+/* Stat captions (e.g. "Years in the Emirates") get their own two-beat
+   entrance, well after their card starts revealing and while the number
+   is still counting up: the caption rises up through a mask like the
+   hero headline, then a small underline sweeps in beneath it. */
+.stat-label-mask {
+  overflow: hidden;
+}
+.stat-label-text {
+  transform: translateY(130%);
+  transition: transform 0.85s var(--ease-out-expo);
+  transition-delay: 0.4s;
+}
+.reveal.is-visible .stat-label-text {
+  transform: none;
+}
+
+.stat-label-underline {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out-expo);
+  transition-delay: 0.95s;
+}
+.reveal.is-visible .stat-label-underline {
+  transform: scaleX(1);
 }
 
 .rise {
@@ -219,6 +258,8 @@
     scroll-behavior: auto;
   }
   .reveal,
+  .stat-label-text,
+  .stat-label-underline,
   .rise > span,
   .ken-burns,
   .marquee-track,
@@ -227,5 +268,6 @@
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
   }
 }

@@ -6,13 +6,15 @@ type RevealProps = {
   delay?: number
   className?: string
   as?: ElementType
+  /** Which way the element travels in from. Default 'up'. */
+  direction?: 'up' | 'left' | 'right'
 }
 
 /**
  * Fades + lifts its children into place whenever they enter the viewport,
  * triggering the animation every scroll cycle.
  */
-function Reveal({ children, delay = 0, className = '', as: Tag = 'div' }: RevealProps) {
+function Reveal({ children, delay = 0, className = '', as: Tag = 'div', direction = 'up' }: RevealProps) {
   const ref = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -39,10 +41,12 @@ function Reveal({ children, delay = 0, className = '', as: Tag = 'div' }: Reveal
     return () => observer.disconnect()
   }, [])
 
+  const directionClass = direction === 'left' ? 'reveal-left' : direction === 'right' ? 'reveal-right' : ''
+
   return (
     <Tag
       ref={ref}
-      className={`reveal ${className}`}
+      className={`reveal ${directionClass} ${className}`}
       style={{ '--reveal-delay': `${delay}ms` } as React.CSSProperties}
     >
       {children}

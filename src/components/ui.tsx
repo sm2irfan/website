@@ -149,7 +149,10 @@ export function Stat({ value, suffix, label }: { value: number; suffix?: string;
   return (
     <>
       <Counter value={value} suffix={suffix} />
-      <p className="mt-3 text-sm font-medium text-ink-dim">{label}</p>
+      <div className="stat-label-mask mt-3 overflow-hidden">
+        <p className="stat-label-text text-sm font-medium text-ink-dim">{label}</p>
+      </div>
+      <span className="stat-label-underline mt-2 block h-px w-8 bg-brand-deep" />
     </>
   )
 }
