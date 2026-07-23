@@ -39,8 +39,10 @@ function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/50" />
       </div>
 
-      {/* Drifting gold glow for bold-corporate depth */}
+      {/* Drifting color-pop glows — three hues so the hero never reads as one flat tint */}
       <div className="drift pointer-events-none absolute -top-32 right-[-10%] h-[36rem] w-[36rem] rounded-full brand-glow blur-3xl" />
+      <div className="drift-alt pointer-events-none absolute -bottom-40 left-[-10%] h-[30rem] w-[30rem] rounded-full violet-glow blur-3xl" />
+      <div className="drift pointer-events-none absolute top-1/3 left-1/4 h-64 w-64 rounded-full teal-glow blur-3xl" style={{ animationDelay: '-9s' }} />
 
       <div className="relative mx-auto w-full max-w-7xl px-6 pt-32 pb-24 md:px-10">
         <div className="rise" style={cssVars({ '--rise-delay': '200ms' })}>
@@ -305,6 +307,7 @@ function CallToAction() {
       <div className="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-24">
         <div className="brand-gradient relative overflow-hidden rounded-[2.5rem] px-6 py-24 text-center shadow-2xl md:px-16 md:py-32">
           <div className="drift pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-ink/10 blur-3xl" />
+          <div className="drift-alt pointer-events-none absolute -top-20 -right-20 h-72 w-72 rounded-full bg-paper/20 blur-3xl" />
           <Reveal>
             <p className="eyebrow mx-auto justify-center border-ink/20 bg-ink/10 text-ink">
               Let&rsquo;s Build

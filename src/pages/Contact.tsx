@@ -8,7 +8,7 @@ import { mailHref, telHref } from '../lib/utils'
 const LABEL = 'text-xs font-bold uppercase tracking-wide text-ink-dim transition-colors duration-300 group-focus-within:text-brand-deep'
 
 const CONTROL =
-  'mt-3 w-full rounded-2xl border border-line bg-surface px-5 py-3.5 text-base text-ink shadow-sm transition-all duration-300 outline-none focus:border-brand focus:shadow-[0_0_0_4px_rgba(200,164,77,0.15)]'
+  'mt-3 w-full rounded-2xl border border-line bg-surface px-5 py-3.5 text-base text-ink shadow-sm transition-all duration-300 outline-none focus:border-brand focus:shadow-[0_0_0_4px_rgba(255,107,53,0.15)]'
 
 /** Rounded field whose label lights up brand on focus. */
 function Field({

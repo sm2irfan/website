@@ -53,7 +53,9 @@ function Services() {
                       className="h-full w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
-                    <span className="brand-gradient display absolute top-6 left-6 flex h-16 w-16 items-center justify-center rounded-2xl text-2xl text-ink shadow-lg">
+                    <span
+                      className={`${['brand-gradient', 'violet-gradient', 'teal-gradient'][i % 3]} display absolute top-6 left-6 flex h-16 w-16 items-center justify-center rounded-2xl text-2xl text-ink shadow-lg`}
+                    >
                       {service.index}
                     </span>
                   </div>

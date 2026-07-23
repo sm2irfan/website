@@ -2,34 +2,40 @@
 
 /* ------------------------------------------------------------------
    Dynamic Delta Group — design tokens
-   Palette: bold modern corporate — warm paper base, brass-gold accent,
-            deep red for gradient punch.
+   Palette: vibrant & colorful modern — warm cream base, electric-orange
+            primary, violet + teal secondary accents for bold color-pop.
    Type:    Sora (display, bold geometric) · Inter (UI) · JetBrains Mono (tags)
 ------------------------------------------------------------------- */
 @theme {
-  --color-paper: #faf8f3;
-  --color-paper-soft: #f1ead9;
+  --color-paper: #fffcf6;
+  --color-paper-soft: #ffefe0;
 
   --color-surface: #ffffff;
-  --color-surface-soft: #fdfbf6;
+  --color-surface-soft: #fff8f0;
 
-  --color-ink: #17140f;
-  --color-ink-dim: #6c6353;
+  --color-ink: #1b1330;
+  --color-ink-dim: #6e6588;
 
-  /* Brushed-brass gold, the primary accent. Deep red powers gradients
-     and hover states so the palette still reads as "brand", not generic. */
-  --color-brand: #c8a44d;
-  --color-brand-lit: #e6c777;
-  --color-brand-deep: #a62619;
+  /* Electric orange, the primary vibrant accent. */
+  --color-brand: #ff6b35;
+  --color-brand-lit: #ffa36b;
+  --color-brand-deep: #e63946;
 
-  --color-line: #e9e1cd;
+  /* Violet and teal — secondary vibrant accents, used to keep every
+     gradient/glow/badge from reading as a single-hue palette. */
+  --color-violet: #7c5cfc;
+  --color-violet-lit: #b4a5ff;
+  --color-teal: #10c8a6;
+  --color-teal-lit: #6fe3cb;
+
+  --color-line: #ffe1c7;
 
   --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --shadow-brand: 0 20px 45px -15px rgba(200, 164, 77, 0.45);
+  --shadow-brand: 0 20px 45px -15px rgba(255, 107, 53, 0.5);
 }
 
 @layer base {
@@ -50,7 +56,7 @@
 
   ::selection {
     background: var(--color-brand);
-    color: var(--color-ink);
+    color: var(--color-paper);
   }
 
   ::-webkit-scrollbar {
@@ -99,22 +105,38 @@
     background: var(--color-line);
   }
 
-  /* Gold → deep-red diagonal gradient used on primary CTAs and accents */
+  /* Orange → violet diagonal gradient, the site's primary CTA/accent treatment */
   .brand-gradient {
-    background: linear-gradient(135deg, var(--color-brand-lit), var(--color-brand) 55%, var(--color-brand-deep));
+    background: linear-gradient(135deg, var(--color-brand-lit), var(--color-brand) 45%, var(--color-violet));
   }
 
-  /* Soft radial gold glow, dropped behind hero/CTA blocks for depth */
+  /* Violet → orange, used to vary the second recurring gradient element on a page */
+  .violet-gradient {
+    background: linear-gradient(135deg, var(--color-violet-lit), var(--color-violet) 55%, var(--color-brand));
+  }
+
+  /* Teal → violet, a third gradient for extra color variety on badges/accents */
+  .teal-gradient {
+    background: linear-gradient(135deg, var(--color-teal-lit), var(--color-teal) 55%, var(--color-violet));
+  }
+
+  /* Soft radial glow blobs, dropped behind hero/CTA panels for color-pop depth */
   .brand-glow {
-    background: radial-gradient(closest-side, color-mix(in srgb, var(--color-brand) 35%, transparent), transparent);
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--color-brand) 40%, transparent), transparent);
+  }
+  .violet-glow {
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--color-violet) 40%, transparent), transparent);
+  }
+  .teal-glow {
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--color-teal) 38%, transparent), transparent);
   }
 
-  /* Elevated white card, the base surface for the bold-corporate look */
+  /* Elevated white card, the base surface for the vibrant-modern look */
   .card {
     background: var(--color-surface);
     border: 1px solid var(--color-line);
-    border-radius: 1.5rem;
-    box-shadow: 0 1px 2px rgba(23, 20, 15, 0.04);
+    border-radius: 1.75rem;
+    box-shadow: 0 1px 2px rgba(27, 19, 48, 0.04);
     transition:
       transform 0.4s var(--ease-out-expo),
       box-shadow 0.4s var(--ease-out-expo),
@@ -123,7 +145,7 @@
   .card:hover {
     transform: translateY(-4px);
     border-color: color-mix(in srgb, var(--color-brand) 45%, transparent);
-    box-shadow: 0 24px 50px -20px rgba(23, 20, 15, 0.18);
+    box-shadow: 0 24px 50px -20px rgba(255, 107, 53, 0.28);
   }
 }
 
@@ -253,6 +275,21 @@
   animation: drift 18s ease-in-out infinite;
 }
 
+/* A second drift cycle, offset in timing/direction so two blobs sharing a
+   section never move in lockstep. */
+@keyframes drift-alt {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-5%, 5%) scale(1.12);
+  }
+}
+.drift-alt {
+  animation: drift-alt 22s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -263,7 +300,8 @@
   .rise > span,
   .ken-burns,
   .marquee-track,
-  .drift {
+  .drift,
+  .drift-alt {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;

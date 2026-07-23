@@ -76,7 +76,7 @@ function Navbar() {
 
             <Link
               to="/contact"
-              className="brand-gradient hidden rounded-full px-5 py-2.5 text-sm font-bold text-ink shadow-[0_10px_25px_-10px_rgba(200,164,77,0.6)] transition-transform duration-300 hover:-translate-y-0.5 md:block"
+              className="brand-gradient hidden rounded-full px-5 py-2.5 text-sm font-bold text-ink shadow-[0_10px_25px_-10px_rgba(255,107,53,0.6)] transition-transform duration-300 hover:-translate-y-0.5 md:block"
             >
               Get a Quote
             </Link>

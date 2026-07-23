@@ -58,7 +58,7 @@ const BASE =
 
 const VARIANTS: Record<Variant, string> = {
   solid:
-    'brand-gradient text-ink shadow-[0_16px_35px_-12px_rgba(200,164,77,0.55)] hover:shadow-[0_20px_45px_-12px_rgba(166,38,25,0.5)] hover:-translate-y-0.5',
+    'brand-gradient text-ink shadow-[0_16px_35px_-12px_rgba(255,107,53,0.55)] hover:shadow-[0_20px_45px_-12px_rgba(124,92,252,0.5)] hover:-translate-y-0.5',
   ghost:
     'border-2 border-ink/10 bg-surface text-ink hover:border-brand hover:-translate-y-0.5 hover:shadow-lg',
 }
@@ -160,6 +160,8 @@ export function Stat({ value, suffix, label }: { value: number; suffix?: string;
 /* ------------------------------- Marquee -------------------------------- */
 
 /** Seamless ticker — the list is rendered twice and translated by -50%. */
+const MARQUEE_HUES = ['text-brand', 'text-violet', 'text-teal']
+
 export function Marquee({ items }: { items: string[] }) {
   const row = [...items, ...items]
 
@@ -169,7 +171,7 @@ export function Marquee({ items }: { items: string[] }) {
         {row.map((item, i) => (
           <div key={i} className="flex shrink-0 items-center gap-12">
             <span className="text-sm font-semibold tracking-wide text-paper/80">{item}</span>
-            <span className="text-brand">&#9670;</span>
+            <span className={MARQUEE_HUES[i % MARQUEE_HUES.length]}>&#9670;</span>
           </div>
         ))}
       </div>
@@ -205,6 +207,9 @@ export function PageHero({
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/75 to-ink/50" />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/60 via-transparent to-transparent" />
       </div>
+
+      {/* Color-pop glow, peeking through the overlay for the same vibrant depth as the homepage hero */}
+      <div className="drift pointer-events-none absolute -top-24 right-[-8%] h-80 w-80 rounded-full violet-glow opacity-70 blur-3xl" />
 
       <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 md:px-10">
         <span className="eyebrow bg-paper/15 text-brand-lit ring-1 ring-paper/25">{eyebrow}</span>

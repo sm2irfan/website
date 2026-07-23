@@ -5,6 +5,10 @@ type Project = (typeof import('../data/site'))['projects'][number]
 
 /* ---------------------------- Numbered card ----------------------------- */
 
+/** Cycles the three accent gradients so a grid of badges reads as genuinely
+ * multi-color rather than one hue repeated. */
+const BADGE_GRADIENTS = ['brand-gradient', 'violet-gradient', 'teal-gradient']
+
 /**
  * The `01 / Title / body` cell used for values, benefits and process steps.
  * The caller owns the outer wrapper, since its background varies by section.
@@ -20,7 +24,9 @@ export function NumberedCard({
 }) {
   return (
     <>
-      <span className="brand-gradient inline-flex h-10 w-10 items-center justify-center rounded-xl text-xs font-bold text-ink">
+      <span
+        className={`${BADGE_GRADIENTS[(index - 1) % BADGE_GRADIENTS.length]} inline-flex h-10 w-10 items-center justify-center rounded-xl text-xs font-bold text-ink`}
+      >
         {pad(index)}
       </span>
       <h3 className="display mt-6 text-2xl">{title}</h3>
